@@ -1,14 +1,14 @@
 export interface VendorRinciDto {
   id: number;
-  id_vendor: number;
+  id_vendor: number | null;
   nama_vendor: string;
   kontak_vendor: string;
   alamat_gudang: string;
-  desa_vendor: number;
-  kecamatan_vendor: number;
-  kota_vendor: number;
-  propinsi_vendor: number;
-  negara_vendor: number;
+  desa_vendor: number | null;
+  kecamatan_vendor: number | null;
+  kota_vendor: number | null;
+  propinsi_vendor: number | null;
+  negara_vendor: number | null;
   latlong_vendor: string;
   alamat_bayar_vendor: string;
   telp_vendor: string;

@@ -1,7 +1,7 @@
 export interface KabarpasarchatDto {
   id: number;
-  id_kabarpasar: number;
-  id_userdata: number;
+  id_kabarpasar: number | null;
+  id_userdata: number | null;
   nama_userdata: string;
   isi_chat: string;
   image_chat: string;

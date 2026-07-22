@@ -6,25 +6,25 @@ import { KunjunganJualRinci } from '../../kunjungan-jual-rinci/models/kunjungan-
 
 export interface KunjunganJual {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
   namaCabang: string;
   kodeKunjungan: string;
-  idUserdata: number;
-  idPelanggan: number;
+  idUserdata: number | null;
+  idPelanggan: number | null;
   nomorPelanggan: string;
   alamatPelanggan: string;
-  idJangkapiutang: number;
+  idJangkapiutang: number | null;
   namaJangkapiutang: string;
-  idAolso: number;
+  idAolso: number | null;
   hariKunjunganjual: string;
   tanggalKunjunganjual: Date;
   tanggalKirim: Date;
   nomorSalesorder: string;
-  nilaiSalesorder: number;
-  diskonFaktur: number;
-  nilaiPoin: number;
+  nilaiSalesorder: number | null;
+  diskonFaktur: number | null;
+  nilaiPoin: number | null;
   latlongKunjunganjual: string;
   createdAt?: Date;
   updatedAt?: Date;

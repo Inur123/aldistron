@@ -1,8 +1,8 @@
 export interface HargaMomenDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
-  id_cabang: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
+  id_cabang: number | null;
   nama_hargamomen: string;
   keterangan_hargamomen: string;
   aktif_hargamomen: boolean;

@@ -4,9 +4,9 @@ import { Pelanggan } from '../../pelanggan/models/pelanggan.model';
 
 export interface HargaMomen {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
   namaHargamomen: string;
   keteranganHargamomen: string;
   aktifHargamomen: boolean;

@@ -3,15 +3,15 @@ import { Unit } from '../../unit/models/unit.model';
 
 export interface HargaDiskonRinci {
   id: number;
-  idHargadiskonProduk: number;
-  idProdukHargadiskon: number;
-  idUnitHargadiskon: number;
+  idHargadiskonProduk: number | null;
+  idProdukHargadiskon: number | null;
+  idUnitHargadiskon: number | null;
   namaUnitHargadiskon: string;
   diskonTipe: string;
-  minQtyHargadiskon: number;
-  maxQtyHargadiskon: number;
-  diskonRupiah: number;
-  diskonPersen: number;
+  minQtyHargadiskon: number | null;
+  maxQtyHargadiskon: number | null;
+  diskonRupiah: number | null;
+  diskonPersen: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 

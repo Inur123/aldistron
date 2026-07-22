@@ -7,15 +7,15 @@ import { KunjunganSetor } from '../../kunjungan-setor/models/kunjungan-setor.mod
 
 export interface KunjunganTagih {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
   kodeKunjungan: string;
-  idUserdata: number;
-  idPelanggan: number;
+  idUserdata: number | null;
+  idPelanggan: number | null;
   nomorPelanggan: string;
-  idAolcust: number;
-  idAolsr: number;
+  idAolcust: number | null;
+  idAolsr: number | null;
   nomorSalesreceipt: string;
   hariKunjungantagih: string;
   tanggalKunjungantagih: Date;

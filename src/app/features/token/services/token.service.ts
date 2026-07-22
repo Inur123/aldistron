@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class TokenService {
   constructor(private http: HttpClient) {}
 
   getTokens(): Observable<TokenDto[]> {
-    return this.http.get<TokenDto[]>("https://api.aldistron.com/token");
+    return this.http.get<TokenDto[]>("${environment.apiUrl}/token");
   }
 }

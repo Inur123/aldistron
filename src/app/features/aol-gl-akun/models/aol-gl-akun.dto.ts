@@ -1,9 +1,9 @@
 export interface AolGlAkunDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
-  id_aolgl: number;
-  id_parent_aolgl: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
+  id_aolgl: number | null;
+  id_parent_aolgl: number | null;
   nomor_aolglakun: string;
   nama_aolglakun: string;
   type_account: string;

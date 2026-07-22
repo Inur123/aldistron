@@ -4,15 +4,15 @@ import { Unit } from '../../unit/models/unit.model';
 
 export interface HargaMomenRinci {
   id: number;
-  idHargamomen: number;
+  idHargamomen: number | null;
   tipeMomen: string;
-  totalMomen: number;
-  potonganRupiah: number;
-  potonganPersen: number;
-  idProdukHargamomen: number;
-  qtyProdukHargamomen: number;
-  idUnitProdukHargamomen: number;
-  poinHargamomen: number;
+  totalMomen: number | null;
+  potonganRupiah: number | null;
+  potonganPersen: number | null;
+  idProdukHargamomen: number | null;
+  qtyProdukHargamomen: number | null;
+  idUnitProdukHargamomen: number | null;
+  poinHargamomen: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 

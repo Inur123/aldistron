@@ -1,9 +1,9 @@
 export interface ProdukKompetitorDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
-  id_cabang: number;
-  id_userdata: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
+  id_cabang: number | null;
+  id_userdata: number | null;
   nama_administrator: string;
   email_administrator: string;
   jenis_produk: string;

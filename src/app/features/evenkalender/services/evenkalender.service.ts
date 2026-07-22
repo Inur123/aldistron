@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class EvenkalenderService {
   constructor(private http: HttpClient) {}
 
   getEvenkalenders(): Observable<EvenkalenderDto[]> {
-    return this.http.get<EvenkalenderDto[]>("https://api.aldistron.com/evenkalender");
+    return this.http.get<EvenkalenderDto[]>("${environment.apiUrl}/evenkalender");
   }
 }

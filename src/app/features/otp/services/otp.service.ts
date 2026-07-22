@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class OtpService {
   constructor(private http: HttpClient) {}
 
   getOtps(): Observable<OtpDto[]> {
-    return this.http.get<OtpDto[]>("https://api.aldistron.com/otp");
+    return this.http.get<OtpDto[]>("${environment.apiUrl}/otp");
   }
 }

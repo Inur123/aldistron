@@ -4,9 +4,9 @@ import { Pelanggan } from '../../pelanggan/models/pelanggan.model';
 
 export interface HargaPromo {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
   namaHargapromo: string;
   keteranganHargapromo: string;
   aktifHargapromo: boolean;

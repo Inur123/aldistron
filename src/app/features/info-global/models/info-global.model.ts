@@ -1,9 +1,9 @@
 export interface InfoGlobal {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
-  idUserdata: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
+  idUserdata: number | null;
   namaInfoglobal: string;
   slug: string;
   keteranganInfoglobal: string;

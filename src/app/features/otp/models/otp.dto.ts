@@ -1,6 +1,6 @@
 export interface OtpDto {
   id: number;
-  userdata: number;
+  userdata: number | null;
   otp: string;
   aktif: boolean;
   device: string;

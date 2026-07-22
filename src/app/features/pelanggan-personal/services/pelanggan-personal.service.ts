@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class PelangganPersonalService {
   constructor(private http: HttpClient) {}
 
   getPelangganPersonals(): Observable<PelangganPersonalDto[]> {
-    return this.http.get<PelangganPersonalDto[]>("https://api.aldistron.com/pelanggan-personal");
+    return this.http.get<PelangganPersonalDto[]>("${environment.apiUrl}/pelanggan-personal");
   }
 }

@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class HttpStatusService {
   constructor(private http: HttpClient) {}
 
   getHttpStatuss(): Observable<HttpStatusDto[]> {
-    return this.http.get<HttpStatusDto[]>("https://api.aldistron.com/http-status");
+    return this.http.get<HttpStatusDto[]>("${environment.apiUrl}/http-status");
   }
 }

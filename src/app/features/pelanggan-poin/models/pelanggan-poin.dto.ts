@@ -1,15 +1,15 @@
 export interface PelangganPoinDto {
   id: number;
-  id_userdata: number;
-  id_pelanggan: number;
-  id_jual: number;
-  id_tagih: number;
-  id_event: number;
+  id_userdata: number | null;
+  id_pelanggan: number | null;
+  id_jual: number | null;
+  id_tagih: number | null;
+  id_event: number | null;
   nama_event: string;
-  poin_masuk: number;
-  poin_keluar: number;
+  poin_masuk: number | null;
+  poin_keluar: number | null;
   keterangan: string;
-  poin_saldo: number;
+  poin_saldo: number | null;
   aktif_event: boolean;
   created_at?: string;
   updated_at?: string;

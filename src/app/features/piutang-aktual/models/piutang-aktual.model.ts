@@ -4,17 +4,17 @@ import { Pelanggan } from '../../pelanggan/models/pelanggan.model';
 
 export interface PiutangAktual {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
   tanggalUpdate: string;
   kodeRealtime: string;
-  idAolinv: number;
-  idAolcust: number;
+  idAolinv: number | null;
+  idAolcust: number | null;
   nomorInvoice: string;
   tanggalJatuhtempo: Date;
-  totalPiutang: number;
-  sisaPiutang: number;
+  totalPiutang: number | null;
+  sisaPiutang: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 

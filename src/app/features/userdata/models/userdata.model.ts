@@ -9,10 +9,10 @@ import { PelangganRequest } from '../../pelanggan-request/models/pelanggan-reque
 
 export interface Userdata {
   id: number;
-  idAoldatabase: number;
-  idCabang: number;
-  idAoldb: number;
-  idAolemp: number;
+  idAoldatabase: number | null;
+  idCabang: number | null;
+  idAoldb: number | null;
+  idAolemp: number | null;
   sapaan: string;
   nama: string;
   username: string;
@@ -24,14 +24,14 @@ export interface Userdata {
   kelasAkses: string;
   alamat: string;
   upline: string;
-  idVendor: number;
+  idVendor: number | null;
   namaVendor: string;
   aktifUserdata: boolean;
   biayaTanpaKunjungan: boolean;
   metodeJual: string;
-  aolsalesId: number;
-  logAolempId: number;
-  logAolbranchId: number;
+  aolsalesId: number | null;
+  logAolempId: number | null;
+  logAolbranchId: number | null;
   aolUpdated: boolean;
   createdAt?: Date;
   updatedAt?: Date;

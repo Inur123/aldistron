@@ -1,13 +1,13 @@
 export interface PelangganKategori {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idAolcustcat: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idAolcustcat: number | null;
   namaKategori: string;
   keteranganKategori: string;
-  parentId: number;
+  parentId: number | null;
   haschild: boolean;
-  logAolcatId: number;
+  logAolcatId: number | null;
   connectionAol: boolean;
   createdAt?: Date;
   updatedAt?: Date;

@@ -5,9 +5,9 @@ import { Pelanggan } from '../../pelanggan/models/pelanggan.model';
 
 export interface HargaPaket {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
   namaHargapaket: string;
   keteranganHargapaket: string;
   aktifHargapaket: boolean;

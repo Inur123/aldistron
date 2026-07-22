@@ -6,7 +6,7 @@ export interface EvenkalenderDto {
   selesai_even: string;
   array_data: string;
   status_even: boolean;
-  creator: number;
+  creator: number | null;
   created_at?: string;
   updated_at?: string;
 }

@@ -1,14 +1,14 @@
 export interface KunjunganTagihDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
-  id_cabang: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
+  id_cabang: number | null;
   kode_kunjungan: string;
-  id_userdata: number;
-  id_pelanggan: number;
+  id_userdata: number | null;
+  id_pelanggan: number | null;
   nomor_pelanggan: string;
-  id_aolcust: number;
-  id_aolsr: number;
+  id_aolcust: number | null;
+  id_aolsr: number | null;
   nomor_salesreceipt: string;
   hari_kunjungantagih: string;
   tanggal_kunjungantagih: string;

@@ -4,18 +4,18 @@ import { Unit } from '../../unit/models/unit.model';
 
 export interface KunjunganJualRinci {
   id: number;
-  idKunjunganjual: number;
-  idProdukKunjunganjual: number;
+  idKunjunganjual: number | null;
+  idProdukKunjunganjual: number | null;
   nomorProdukKunjunganjual: string;
   namaProdukKunjunganjual: string;
-  qtyProdukKunjunganjual: number;
-  idUnitKunjunganjual: number;
+  qtyProdukKunjunganjual: number | null;
+  idUnitKunjunganjual: number | null;
   namaUnitKunjunganjual: string;
-  hargaUnitKunjunganjual: number;
-  diskonUnitKunjunganjual: number;
-  hargaProdukKunjunganjual: number;
-  diskonProdukKunjunganjual: number;
-  totalhargaKunjunganjual: number;
+  hargaUnitKunjunganjual: number | null;
+  diskonUnitKunjunganjual: number | null;
+  hargaProdukKunjunganjual: number | null;
+  diskonProdukKunjunganjual: number | null;
+  totalhargaKunjunganjual: number | null;
   keteranganTransaksi: string;
   createdAt?: Date;
   updatedAt?: Date;

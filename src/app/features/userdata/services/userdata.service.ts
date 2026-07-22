@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class UserdataService {
   constructor(private http: HttpClient) {}
 
   getUserdatas(): Observable<UserdataDto[]> {
-    return this.http.get<UserdataDto[]>("https://api.aldistron.com/userdata");
+    return this.http.get<UserdataDto[]>("${environment.apiUrl}/userdata");
   }
 }

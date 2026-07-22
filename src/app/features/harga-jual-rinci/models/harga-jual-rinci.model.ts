@@ -4,15 +4,15 @@ import { Unit } from '../../unit/models/unit.model';
 
 export interface HargaJualRinci {
   id: number;
-  idHargajual: number;
-  idProduk: number;
-  idUnit: number;
-  hargajualHet: number;
-  hargajualRetail: number;
-  hargajualWo: number;
-  hargajualSo: number;
-  hargajualCustom: number;
-  hargajualSpesial: number;
+  idHargajual: number | null;
+  idProduk: number | null;
+  idUnit: number | null;
+  hargajualHet: number | null;
+  hargajualRetail: number | null;
+  hargajualWo: number | null;
+  hargajualSo: number | null;
+  hargajualCustom: number | null;
+  hargajualSpesial: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 

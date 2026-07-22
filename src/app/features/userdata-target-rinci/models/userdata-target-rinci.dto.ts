@@ -1,20 +1,20 @@
 export interface UserdataTargetRinciDto {
   id: number;
-  id_userdatatarget: number;
-  id_userdata: number;
+  id_userdatatarget: number | null;
+  id_userdata: number | null;
   jenis_target: string;
-  id_produk_target: number;
-  id_unit_produk_target: number;
-  nilai_produk_target: number;
-  nilai_noo_target: number;
-  nilai_ec_target: number;
-  nilai_jatem_target: number;
-  nilai_kerja_target: number;
-  hasil_produk_target: number;
-  hasil_noo_target: number;
-  hasil_ec_target: number;
-  hasil_jatem_target: number;
-  hasil_kerja_target: number;
+  id_produk_target: number | null;
+  id_unit_produk_target: number | null;
+  nilai_produk_target: number | null;
+  nilai_noo_target: number | null;
+  nilai_ec_target: number | null;
+  nilai_jatem_target: number | null;
+  nilai_kerja_target: number | null;
+  hasil_produk_target: number | null;
+  hasil_noo_target: number | null;
+  hasil_ec_target: number | null;
+  hasil_jatem_target: number | null;
+  hasil_kerja_target: number | null;
   created_at?: string;
   updated_at?: string;
 }

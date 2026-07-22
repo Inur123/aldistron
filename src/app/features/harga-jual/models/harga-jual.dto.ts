@@ -1,8 +1,8 @@
 export interface HargaJualDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
-  id_cabang: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
+  id_cabang: number | null;
   nama_hargajual: string;
   keterangan_hargajual: string;
   aktif_hargajual: boolean;

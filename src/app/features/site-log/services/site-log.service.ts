@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class SiteLogService {
   constructor(private http: HttpClient) {}
 
   getSiteLogs(): Observable<SiteLogDto[]> {
-    return this.http.get<SiteLogDto[]>("https://api.aldistron.com/site-log");
+    return this.http.get<SiteLogDto[]>("${environment.apiUrl}/site-log");
   }
 }

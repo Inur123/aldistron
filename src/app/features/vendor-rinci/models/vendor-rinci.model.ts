@@ -2,15 +2,15 @@ import { Vendor } from '../../vendor/models/vendor.model';
 
 export interface VendorRinci {
   id: number;
-  idVendor: number;
+  idVendor: number | null;
   namaVendor: string;
   kontakVendor: string;
   alamatGudang: string;
-  desaVendor: number;
-  kecamatanVendor: number;
-  kotaVendor: number;
-  propinsiVendor: number;
-  negaraVendor: number;
+  desaVendor: number | null;
+  kecamatanVendor: number | null;
+  kotaVendor: number | null;
+  propinsiVendor: number | null;
+  negaraVendor: number | null;
   latlongVendor: string;
   alamatBayarVendor: string;
   telpVendor: string;

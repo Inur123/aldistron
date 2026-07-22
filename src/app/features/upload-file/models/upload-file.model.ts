@@ -2,8 +2,8 @@ import { AolDatabase } from '../../aol-database/models/aol-database.model';
 
 export interface UploadFile {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
   fileCategory: string;
   fileUsability: string;
   fileExtension: string;
@@ -11,9 +11,9 @@ export interface UploadFile {
   fileOriginalname: string;
   fileFilename: string;
   filePath: string;
-  fileSize: number;
+  fileSize: number | null;
   fileUsed: boolean;
-  userEditor: number;
+  userEditor: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 

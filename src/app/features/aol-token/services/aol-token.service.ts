@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class AolTokenService {
   constructor(private http: HttpClient) {}
 
   getAolTokens(): Observable<AolTokenDto[]> {
-    return this.http.get<AolTokenDto[]>(`https://api.aldistron.com/${this.endpoint}`);
+    return this.http.get<AolTokenDto[]>(`${environment.apiUrl}/${this.endpoint}`);
   }
 }

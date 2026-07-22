@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class UploadFileService {
   constructor(private http: HttpClient) {}
 
   getUploadFiles(): Observable<UploadFileDto[]> {
-    return this.http.get<UploadFileDto[]>("https://api.aldistron.com/upload-file");
+    return this.http.get<UploadFileDto[]>("${environment.apiUrl}/upload-file");
   }
 }

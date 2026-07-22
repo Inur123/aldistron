@@ -1,11 +1,11 @@
 export interface ProductDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
-  id_vendor: number;
-  id_produkbrand: number;
-  id_produkkategori: number;
-  id_aolprod: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
+  id_vendor: number | null;
+  id_produkbrand: number | null;
+  id_produkkategori: number | null;
+  id_aolprod: number | null;
   nama_vendor_produk: string;
   nama_brand_produk: string;
   nama_kategori_produk: string;
@@ -15,29 +15,40 @@ export interface ProductDto {
   barcode_produk: string;
   keterangan_produk: string;
   aktif_produk: boolean;
-  konversi_unit1: number;
-  konversi_unit2: number;
-  konversi_unit3: number;
-  konversi_unit4: number;
-  konversi_unit5: number;
-  rasio_unit1: number;
-  rasio_unit2: number;
-  rasio_unit3: number;
-  rasio_unit4: number;
-  rasio_unit5: number;
-  gramasi_produk: number;
-  panjang_produk_kecil: number;
-  lebar_produk_kecil: number;
-  tinggi_produk_kecil: number;
-  panjang_produk_besar: number;
-  lebar_produk_besar: number;
-  tinggi_produk_besar: number;
+  konversi_unit1: number | null;
+  konversi_unit2: number | null;
+  konversi_unit3: number | null;
+  konversi_unit4: number | null;
+  konversi_unit5: number | null;
+  rasio_unit1: number | null;
+  rasio_unit2: number | null;
+  rasio_unit3: number | null;
+  rasio_unit4: number | null;
+  rasio_unit5: number | null;
+  gramasi_produk: number | null;
+  panjang_produk_kecil: number | null;
+  lebar_produk_kecil: number | null;
+  tinggi_produk_kecil: number | null;
+  panjang_produk_besar: number | null;
+  lebar_produk_besar: number | null;
+  tinggi_produk_besar: number | null;
   gambar_produk: string;
-  minim_beli_unit1: number;
-  minim_stok_unit1: number;
-  log_aolcat_id: number;
-  log_aolven_id: number;
+  minim_beli_unit1: number | null;
+  minim_stok_unit1: number | null;
+  log_aolcat_id: number | null;
+  log_aolven_id: number | null;
   created_at?: string;
   updated_at?: string;
   deleted_at?: string | null;
 }
+
+// [REQUEST DTO] Query params buat GET /api/produk (list & filter)
+// export interface ProdukRequestDto {
+//   page?: number | null;
+//   limit?: number | null;
+//   search?: string;
+//   idVendor?: number | null;
+//   idProdukBrand?: number | null;
+//   idProdukKategori?: number | null;
+//   aktifOnly?: boolean;
+// }

@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class ApiAolService {
   constructor(private http: HttpClient) {}
 
   getApiAols(): Observable<ApiAolDto[]> {
-    return this.http.get<ApiAolDto[]>(`https://api.aldistron.com/${this.endpoint}`);
+    return this.http.get<ApiAolDto[]>(`${environment.apiUrl}/${this.endpoint}`);
   }
 }

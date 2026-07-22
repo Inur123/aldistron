@@ -5,21 +5,21 @@ import { Unit } from '../../unit/models/unit.model';
 
 export interface UserdataTargetRinci {
   id: number;
-  idUserdatatarget: number;
-  idUserdata: number;
+  idUserdatatarget: number | null;
+  idUserdata: number | null;
   jenisTarget: string;
-  idProdukTarget: number;
-  idUnitProdukTarget: number;
-  nilaiProdukTarget: number;
-  nilaiNooTarget: number;
-  nilaiEcTarget: number;
-  nilaiJatemTarget: number;
-  nilaiKerjaTarget: number;
-  hasilProdukTarget: number;
-  hasilNooTarget: number;
-  hasilEcTarget: number;
-  hasilJatemTarget: number;
-  hasilKerjaTarget: number;
+  idProdukTarget: number | null;
+  idUnitProdukTarget: number | null;
+  nilaiProdukTarget: number | null;
+  nilaiNooTarget: number | null;
+  nilaiEcTarget: number | null;
+  nilaiJatemTarget: number | null;
+  nilaiKerjaTarget: number | null;
+  hasilProdukTarget: number | null;
+  hasilNooTarget: number | null;
+  hasilEcTarget: number | null;
+  hasilJatemTarget: number | null;
+  hasilKerjaTarget: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 

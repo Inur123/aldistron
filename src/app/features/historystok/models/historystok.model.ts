@@ -2,11 +2,11 @@ import { HistorystokRinci } from '../../historystok-rinci/models/historystok-rin
 
 export interface Historystok {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
-  idUserdata: number;
-  idPelanggan: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
+  idUserdata: number | null;
+  idPelanggan: number | null;
   kodeKunjungan: string;
   keterangan: string;
   createdAt?: Date;

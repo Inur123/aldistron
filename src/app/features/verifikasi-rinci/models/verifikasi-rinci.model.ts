@@ -9,19 +9,19 @@ export interface Userdata {
 
 export interface VerifikasiRinci {
   id: number;
-  idVerifikasi: number;
-  idCabang: number;
+  idVerifikasi: number | null;
+  idCabang: number | null;
   kodeVerifikasi: string;
   kodeRegister: string;
-  idUserdata: number;
+  idUserdata: number | null;
   userRegister: string;
   emailRegister: string;
   divisi: string;
   kelasAkses: string;
-  idVendor: number;
+  idVendor: number | null;
   namaVendor: string;
   keteranganKode: string;
-  logAolbranchId: number;
+  logAolbranchId: number | null;
   idDevice: string;
   device: string;
   level: string;

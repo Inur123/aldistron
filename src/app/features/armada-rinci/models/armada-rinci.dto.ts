@@ -1,6 +1,6 @@
 export interface ArmadaRinciDto {
   id: number;
-  id_armada: number;
+  id_armada: number | null;
   nostnk_armada: string;
   nobpkb_armada: string;
   tgl_pembelian: string;

@@ -1,7 +1,7 @@
 export interface AolSessionDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
   dataversion_aol: string;
   licenseend_aol: string;
   session_aol: string;

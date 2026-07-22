@@ -1,9 +1,9 @@
 export interface UserdataDto {
   id: number;
-  id_aoldatabase: number;
-  id_cabang: number;
-  id_aoldb: number;
-  id_aolemp: number;
+  id_aoldatabase: number | null;
+  id_cabang: number | null;
+  id_aoldb: number | null;
+  id_aolemp: number | null;
   sapaan: string;
   nama: string;
   username: string;
@@ -15,14 +15,14 @@ export interface UserdataDto {
   kelas_akses: string;
   alamat: string;
   upline: string;
-  id_vendor: number;
+  id_vendor: number | null;
   nama_vendor: string;
   aktif_userdata: boolean;
   biaya_tanpa_kunjungan: boolean;
   metode_jual: string;
-  aolsales_id: number;
-  log_aolemp_id: number;
-  log_aolbranch_id: number;
+  aolsales_id: number | null;
+  log_aolemp_id: number | null;
+  log_aolbranch_id: number | null;
   aol_updated: boolean;
   created_at?: string;
   updated_at?: string;

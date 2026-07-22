@@ -1,8 +1,8 @@
 export interface HargaPromoDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
-  id_cabang: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
+  id_cabang: number | null;
   nama_hargapromo: string;
   keterangan_hargapromo: string;
   aktif_hargapromo: boolean;

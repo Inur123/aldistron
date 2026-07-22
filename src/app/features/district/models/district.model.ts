@@ -3,7 +3,7 @@ import { Village } from '../../village/models/village.model';
 
 export interface District {
   id: number;
-  regencyId: number;
+  regencyId: number | null;
   name: string;
   rajaongkir: string;
   kodepos: string;

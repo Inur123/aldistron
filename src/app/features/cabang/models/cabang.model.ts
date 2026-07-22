@@ -3,14 +3,14 @@ import { Pelanggan } from '../../pelanggan/models/pelanggan.model';
 
 export interface Cabang {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idAolcab: number;
-  namaCabang: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idAolcab: number | null;
+  namaCabang: number | null;
   alamatCabang: string;
   telpCabang: string;
   handphoneCabang: string;
-  picCabang: number;
+  picCabang: number | null;
   defaultCabang: boolean;
   createdAt?: Date;
   updatedAt?: Date;

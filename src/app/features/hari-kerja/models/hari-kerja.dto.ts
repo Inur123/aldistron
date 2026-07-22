@@ -2,9 +2,9 @@ export interface HariKerjaDto {
   id: number;
   siklus_kerja: string;
   harike: string;
-  mingguke: number;
-  bulanke: number;
-  tahunke: number;
+  mingguke: number | null;
+  bulanke: number | null;
+  tahunke: number | null;
   nama_hari_lokal: string;
   nama_bulan_lokal: string;
   name_day: string;

@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class VillageService {
   constructor(private http: HttpClient) {}
 
   getVillages(): Observable<VillageDto[]> {
-    return this.http.get<VillageDto[]>("https://api.aldistron.com/village");
+    return this.http.get<VillageDto[]>("${environment.apiUrl}/village");
   }
 }

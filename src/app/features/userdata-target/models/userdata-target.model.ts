@@ -3,15 +3,15 @@ import { UserdataTargetRinci } from '../../userdata-target-rinci/models/userdata
 
 export interface UserdataTarget {
   id: number;
-  idUserdata: number;
+  idUserdata: number | null;
   awalTarget: Date;
   akhirTarget: Date;
-  nilaiTargetJual: number;
-  nilaiTargetTagih: number;
-  nilaiTargetKirim: number;
-  hasilTargetJual: number;
-  hasilTargetTagih: number;
-  hasilTargetKirim: number;
+  nilaiTargetJual: number | null;
+  nilaiTargetTagih: number | null;
+  nilaiTargetKirim: number | null;
+  hasilTargetJual: number | null;
+  hasilTargetTagih: number | null;
+  hasilTargetKirim: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 

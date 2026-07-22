@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class KabarPasarService {
   constructor(private http: HttpClient) {}
 
   getKabarPasars(): Observable<KabarPasarDto[]> {
-    return this.http.get<KabarPasarDto[]>("https://api.aldistron.com/kabar-pasar");
+    return this.http.get<KabarPasarDto[]>("${environment.apiUrl}/kabar-pasar");
   }
 }

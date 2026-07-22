@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class DropdownCustomService {
   constructor(private http: HttpClient) {}
 
   getDropdownCustoms(): Observable<DropdownCustomDto[]> {
-    return this.http.get<DropdownCustomDto[]>("https://api.aldistron.com/dropdown-custom");
+    return this.http.get<DropdownCustomDto[]>("${environment.apiUrl}/dropdown-custom");
   }
 }

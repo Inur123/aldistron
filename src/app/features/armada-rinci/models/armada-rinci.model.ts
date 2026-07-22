@@ -2,7 +2,7 @@ import { Armada } from '../../armada/models/armada.model';
 
 export interface ArmadaRinci {
   id: number;
-  idArmada: number;
+  idArmada: number | null;
   nostnkArmada: string;
   nobpkbArmada: string;
   tglPembelian: Date;

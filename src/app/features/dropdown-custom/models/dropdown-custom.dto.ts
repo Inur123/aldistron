@@ -1,8 +1,8 @@
 export interface DropdownCustomDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
-  id_cabang: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
+  id_cabang: number | null;
   nama_administrator: string;
   email_administrator: string;
   kategori_param: string;
@@ -12,9 +12,9 @@ export interface DropdownCustomDto {
   slug_param: string;
   string_param: string;
   date_param: string;
-  integer_param: number;
-  float_param: number;
-  double_param: number;
+  integer_param: number | null;
+  float_param: number | null;
+  double_param: number | null;
   text_param: string;
   value_param: string;
   keterangan_param: string;

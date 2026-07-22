@@ -5,9 +5,9 @@ import { Vendor } from '../../vendor/models/vendor.model';
 
 export interface ProdukBrand {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idVendor: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idVendor: number | null;
   namaBrand: string;
   keteranganBrand: string;
   createdAt?: Date;

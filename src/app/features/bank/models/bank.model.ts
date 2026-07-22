@@ -4,8 +4,8 @@ export interface Bank {
   stringParam: string;
   aliasParam: string;
   dateParam: Date;
-  integerParam: number;
-  floatParam: number;
+  integerParam: number | null;
+  floatParam: number | null;
   keteranganParam: string;
   createdAt?: Date;
   updatedAt?: Date;

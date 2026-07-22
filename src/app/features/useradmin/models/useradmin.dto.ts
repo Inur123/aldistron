@@ -1,6 +1,6 @@
 export interface UseradminDto {
   id: number;
-  id_userdata: number;
+  id_userdata: number | null;
   nama: string;
   username: string;
   password?: string;

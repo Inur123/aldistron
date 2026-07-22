@@ -1,18 +1,18 @@
 export interface VerifikasiRinciDto {
   id: number;
-  id_verifikasi: number;
-  id_cabang: number;
+  id_verifikasi: number | null;
+  id_cabang: number | null;
   kode_verifikasi: string;
   kode_register: string;
-  id_userdata: number;
+  id_userdata: number | null;
   user_register: string;
   email_register: string;
   divisi: string;
   kelas_akses: string;
-  id_vendor: number;
+  id_vendor: number | null;
   nama_vendor: string;
   keterangan_kode: string;
-  log_aolbranch_id: number;
+  log_aolbranch_id: number | null;
   id_device: string;
   device: string;
   level: string;

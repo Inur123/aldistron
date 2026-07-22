@@ -1,8 +1,8 @@
 export interface KeycodeDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
-  id_cabang: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
+  id_cabang: number | null;
   keycode_kategori: string;
   keycode_alphanum: string;
   keycode_alphanum_request: string;
@@ -10,7 +10,7 @@ export interface KeycodeDto {
   keycode_number_request: string;
   keycode_keterangan: string;
   keycode_aktif: boolean;
-  id_userdata: number;
+  id_userdata: number | null;
   nama_userdata: string;
   email_userdata: string;
   nama_administrator: string;

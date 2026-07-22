@@ -4,13 +4,13 @@ import { Unit } from '../../unit/models/unit.model';
 
 export interface HargaPaketRinci {
   id: number;
-  idHargapaket: number;
-  idProdukUtama: number;
-  qtyProdukUtama: number;
-  idUnitProdukUtama: number;
-  idProdukPaket: number;
-  qtyProdukPaket: number;
-  idUnitProdukPaket: number;
+  idHargapaket: number | null;
+  idProdukUtama: number | null;
+  qtyProdukUtama: number | null;
+  idUnitProdukUtama: number | null;
+  idProdukPaket: number | null;
+  qtyProdukPaket: number | null;
+  idUnitProdukPaket: number | null;
   kelipatanPaket: boolean;
   createdAt?: Date;
   updatedAt?: Date;

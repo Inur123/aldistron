@@ -8,9 +8,9 @@ export interface Userdata {
 
 export interface PelangganRequest {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
   namaAdministrator: string;
   emailAdministrator: string;
   kategoriPelanggan: string;
@@ -35,23 +35,23 @@ export interface PelangganRequest {
   npwpPelanggan: string;
   keteranganPelanggan: string;
   statusUsaha: string;
-  luasTempat: number;
+  luasTempat: number | null;
   statusTempat: string;
   imagePelanggan: string;
   imageKtp: string;
-  idUserrequest: number;
+  idUserrequest: number | null;
   potensialPelanggan: string;
-  idUservalidasi: number;
+  idUservalidasi: number | null;
   validasiPelanggan: string;
   supplierPelanggan: string;
   produkPelanggan: string;
   feedbackLingkungan: string;
   feedbackSalesman: string;
   feedbackSupplier: string;
-  plafonPelanggan: number;
-  idUserrelease: number;
+  plafonPelanggan: number | null;
+  idUserrelease: number | null;
   releasePelanggan: boolean;
-  idUsergenerate: number;
+  idUsergenerate: number | null;
   statusGenerate: boolean;
   blacklist: boolean;
   createdAt?: Date;

@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class ProvinceService {
   constructor(private http: HttpClient) {}
 
   getProvinces(): Observable<ProvinceDto[]> {
-    return this.http.get<ProvinceDto[]>("https://api.aldistron.com/province");
+    return this.http.get<ProvinceDto[]>("${environment.apiUrl}/province");
   }
 }

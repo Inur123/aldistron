@@ -3,10 +3,10 @@ import { Cabang } from '../../cabang/models/cabang.model';
 
 export interface ProdukKompetitor {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
-  idUserdata: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
+  idUserdata: number | null;
   namaAdministrator: string;
   emailAdministrator: string;
   jenisProduk: string;

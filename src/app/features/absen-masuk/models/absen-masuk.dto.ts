@@ -1,11 +1,11 @@
 export interface AbsenMasukDto {
   id: number;
-  usrid: number;
-  usrid_temp: number;
+  usrid: number | null;
+  usrid_temp: number | null;
   status: string;
   tgl: string;
   waktu: string;
-  district_id: number;
+  district_id: number | null;
   geolokasi: string;
   area: string;
   pasar: string;

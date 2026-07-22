@@ -6,23 +6,23 @@ import { KunjunganTagih } from '../../kunjungan-tagih/models/kunjungan-tagih.mod
 
 export interface Kunjungan {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
-  idUserdata: number;
-  idPelanggan: number;
-  idRutekunjung: number;
-  idAolcust: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
+  idUserdata: number | null;
+  idPelanggan: number | null;
+  idRutekunjung: number | null;
+  idAolcust: number | null;
   kodeKunjungan: string;
   tanggalKunjungan: Date;
-  idKunjunganjual: number;
-  nilaiKunjunganJual: number;
-  idKunjungantagih: number;
-  nilaiKunjunganTagih: number;
-  nilaiTagihTunai: number;
-  nilaiTagihTransfer: number;
-  nilaiTagihCekgiro: number;
-  nilaiTotalTagih: number;
+  idKunjunganjual: number | null;
+  nilaiKunjunganJual: number | null;
+  idKunjungantagih: number | null;
+  nilaiKunjunganTagih: number | null;
+  nilaiTagihTunai: number | null;
+  nilaiTagihTransfer: number | null;
+  nilaiTagihCekgiro: number | null;
+  nilaiTotalTagih: number | null;
   statusJual: string;
   statusTagih: string;
   infoTidakJual: string;

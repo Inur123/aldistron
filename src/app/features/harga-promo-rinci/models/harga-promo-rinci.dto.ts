@@ -1,16 +1,16 @@
 export interface HargaPromoRinciDto {
   id: number;
-  id_hargapromo_produk: number;
-  id_produk_hargapromo: number;
-  id_unit_hargapromo: number;
+  id_hargapromo_produk: number | null;
+  id_produk_hargapromo: number | null;
+  id_unit_hargapromo: number | null;
   nama_unit_hargapromo: string;
-  min_qty_hargapromo: number;
-  max_qty_hargapromo: number;
-  id_produk_bonus: number;
+  min_qty_hargapromo: number | null;
+  max_qty_hargapromo: number | null;
+  id_produk_bonus: number | null;
   nama_produk_bonus: string;
-  qty_bonus: number;
-  id_unit_bonus: number;
-  nilai_bonus: number;
+  qty_bonus: number | null;
+  id_unit_bonus: number | null;
+  nilai_bonus: number | null;
   created_at?: string;
   updated_at?: string;
 }

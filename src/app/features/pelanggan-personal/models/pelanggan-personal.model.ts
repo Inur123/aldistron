@@ -1,7 +1,7 @@
 export interface PelangganPersonal {
   id: number;
-  idPelanggan: number;
-  idPelangganrinci: number;
+  idPelanggan: number | null;
+  idPelangganrinci: number | null;
   namaPersonal: string;
   nikPersonal: string;
   handphonePersonal: string;
@@ -12,11 +12,11 @@ export interface PelangganPersonal {
   bisnisPersonal: string;
   keteranganPersonal: string;
   alamatPersonal: string;
-  desaPersonal: number;
-  kecamatanPersonal: number;
-  kotaPersonal: number;
-  propinsiPersonal: number;
-  negaraPersonal: number;
+  desaPersonal: number | null;
+  kecamatanPersonal: number | null;
+  kotaPersonal: number | null;
+  propinsiPersonal: number | null;
+  negaraPersonal: number | null;
   latlongPersonal: string;
   imagePersonal: string;
   createdAt?: Date;

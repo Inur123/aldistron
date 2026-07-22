@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class PengirimanRinciBarangService {
   constructor(private http: HttpClient) {}
 
   getPengirimanRinciBarangs(): Observable<PengirimanRinciBarangDto[]> {
-    return this.http.get<PengirimanRinciBarangDto[]>("https://api.aldistron.com/pengiriman-rinci-barang");
+    return this.http.get<PengirimanRinciBarangDto[]>("${environment.apiUrl}/pengiriman-rinci-barang");
   }
 }

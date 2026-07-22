@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class AolTaxService {
   constructor(private http: HttpClient) {}
 
   getAolTaxes(): Observable<AolTaxDto[]> {
-    return this.http.get<AolTaxDto[]>(`https://api.aldistron.com/${this.endpoint}`);
+    return this.http.get<AolTaxDto[]>(`${environment.apiUrl}/${this.endpoint}`);
   }
 }

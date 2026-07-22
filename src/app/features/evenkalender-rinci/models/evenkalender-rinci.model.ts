@@ -2,7 +2,7 @@ import { Evenkalender } from '../../evenkalender/models/evenkalender.model';
 
 export interface EvenkalenderRinci {
   id: number;
-  idEvenkalender: number;
+  idEvenkalender: number | null;
   keterangan: string;
   desaEven: string;
   kecamatanEven: string;

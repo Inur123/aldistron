@@ -6,18 +6,18 @@ import { ProdukBrand } from '../../produk-brand/models/produk-brand.model';
 
 export interface Vendor {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
-  idAolven: number;
-  idJangkapiutang: number;
-  idVendorkategori: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
+  idAolven: number | null;
+  idJangkapiutang: number | null;
+  idVendorkategori: number | null;
   nomorVendor: string;
   namaVendor: string;
   keteranganVendor: string;
-  logAolcatId: number;
-  logAolbranchId: number;
-  logAoltermId: number;
+  logAolcatId: number | null;
+  logAolbranchId: number | null;
+  logAoltermId: number | null;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date | null;

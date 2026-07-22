@@ -2,9 +2,9 @@ export interface HariKerja {
   id: number;
   siklusKerja: string;
   harike: string;
-  mingguke: number;
-  bulanke: number;
-  tahunke: number;
+  mingguke: number | null;
+  bulanke: number | null;
+  tahunke: number | null;
   namaHariLokal: string;
   namaBulanLokal: string;
   nameDay: string;

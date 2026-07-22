@@ -1,6 +1,6 @@
 export interface PelangganRinciDto {
   id: number;
-  id_pelanggan: number;
+  id_pelanggan: number | null;
   nama_pelanggan: string;
   kontak_pelanggan: string;
   kontak_email: string;
@@ -8,11 +8,11 @@ export interface PelangganRinciDto {
   kontak_alamat: string;
   alamat_kirim_pelanggan: string;
   kode_desa: string;
-  desa_pelanggan: number;
-  kecamatan_pelanggan: number;
-  kota_pelanggan: number;
-  propinsi_pelanggan: number;
-  negara_pelanggan: number;
+  desa_pelanggan: number | null;
+  kecamatan_pelanggan: number | null;
+  kota_pelanggan: number | null;
+  propinsi_pelanggan: number | null;
+  negara_pelanggan: number | null;
   latlong_pelanggan: string;
   alamat_tagih_pelanggan: string;
   telp_pelanggan: string;

@@ -3,8 +3,8 @@ import { Pengaturan } from '../../pengaturan/models/pengaturan.model';
 
 export interface AolDatabase {
   id: number;
-  idAoldb: number;
-  idAoltoken: number;
+  idAoldb: number | null;
+  idAoltoken: number | null;
   namaAoldatabase: string;
   aktifAoldatabase: boolean;
   syncSatu: boolean;
@@ -15,8 +15,8 @@ export interface AolDatabase {
   handphoneAoldatabase: string;
   idAlserwa: string;
   syncEmployee: boolean;
-  idEmployee: number;
-  idSalesman: number;
+  idEmployee: number | null;
+  idSalesman: number | null;
   kodeSeriKoneksi: string;
   createdAt?: Date;
   updatedAt?: Date;

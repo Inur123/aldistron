@@ -2,10 +2,10 @@ import { AolDatabase } from '../../aol-database/models/aol-database.model';
 
 export interface AolGlAkun {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idAolgl: number;
-  idParentAolgl: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idAolgl: number | null;
+  idParentAolgl: number | null;
   nomorAolglakun: string;
   namaAolglakun: string;
   typeAccount: string;

@@ -4,7 +4,16 @@ import { DashboardHomeComponent } from './features/dashboard/ui/dashboard-home/d
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'auth/login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
     component: DashboardHomeComponent
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
   },
   {
     path: 'products',

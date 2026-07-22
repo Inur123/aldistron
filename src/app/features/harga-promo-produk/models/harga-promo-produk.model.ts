@@ -4,8 +4,8 @@ import { HargaPromoRinci } from '../../harga-promo-rinci/models/harga-promo-rinc
 
 export interface HargaPromoProduk {
   id: number;
-  idHargapromo: number;
-  idProduk: number;
+  idHargapromo: number | null;
+  idProduk: number | null;
   namaProdukHargapromo: string;
   includeMax: boolean;
   createdAt?: Date;

@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class UnitService {
   constructor(private http: HttpClient) {}
 
   getUnits(): Observable<UnitDto[]> {
-    return this.http.get<UnitDto[]>("https://api.aldistron.com/unit");
+    return this.http.get<UnitDto[]>("${environment.apiUrl}/unit");
   }
 }

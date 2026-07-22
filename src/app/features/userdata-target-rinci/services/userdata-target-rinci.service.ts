@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class UserdataTargetRinciService {
   constructor(private http: HttpClient) {}
 
   getUserdataTargetRincis(): Observable<UserdataTargetRinciDto[]> {
-    return this.http.get<UserdataTargetRinciDto[]>("https://api.aldistron.com/userdata-target-rinci");
+    return this.http.get<UserdataTargetRinciDto[]>("${environment.apiUrl}/userdata-target-rinci");
   }
 }

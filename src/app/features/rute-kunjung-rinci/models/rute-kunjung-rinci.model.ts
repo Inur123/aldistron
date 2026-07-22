@@ -3,9 +3,9 @@ import { Pelanggan } from '../../pelanggan/models/pelanggan.model';
 
 export interface RuteKunjungRinci {
   id: number;
-  idRutekunjung: number;
-  idPelanggan: number;
-  idAolcust: number;
+  idRutekunjung: number | null;
+  idPelanggan: number | null;
+  idAolcust: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 

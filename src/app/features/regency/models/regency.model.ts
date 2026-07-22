@@ -3,7 +3,7 @@ import { District } from '../../district/models/district.model';
 
 export interface Regency {
   id: number;
-  provinceId: number;
+  provinceId: number | null;
   name: string;
   rajaongkir: string;
   kodepos: string;

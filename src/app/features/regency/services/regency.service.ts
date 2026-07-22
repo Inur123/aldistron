@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class RegencyService {
   constructor(private http: HttpClient) {}
 
   getRegencys(): Observable<RegencyDto[]> {
-    return this.http.get<RegencyDto[]>("https://api.aldistron.com/regency");
+    return this.http.get<RegencyDto[]>("${environment.apiUrl}/regency");
   }
 }

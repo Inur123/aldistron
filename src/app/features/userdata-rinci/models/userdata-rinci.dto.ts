@@ -1,16 +1,16 @@
 export interface UserdataRinciDto {
   id: number;
-  id_userdata: number;
+  id_userdata: number | null;
   nik_user: string;
   npwp_user: string;
   kk_user: string;
   nama_user: string;
   tgllahir_user: string;
   alamat_user: string;
-  village_id: number;
-  district_id: number;
-  regency_id: number;
-  province_id: number;
+  village_id: number | null;
+  district_id: number | null;
+  regency_id: number | null;
+  province_id: number | null;
   latlong_alamat_user: string;
   image_ktp: string;
   image_npwp: string;

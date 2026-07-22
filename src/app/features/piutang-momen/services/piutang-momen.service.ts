@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class PiutangMomenService {
   constructor(private http: HttpClient) {}
 
   getPiutangMomens(): Observable<PiutangMomenDto[]> {
-    return this.http.get<PiutangMomenDto[]>("https://api.aldistron.com/piutang-momen");
+    return this.http.get<PiutangMomenDto[]>("${environment.apiUrl}/piutang-momen");
   }
 }

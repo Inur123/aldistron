@@ -4,17 +4,17 @@ import { RuteKunjungRinci } from '../../rute-kunjung-rinci/models/rute-kunjung-r
 
 export interface RuteKunjung {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
-  idUserdata: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
+  idUserdata: number | null;
   namaRutekunjung: string;
   areaRutekunjung: string;
   hariRutekunjung: string;
-  intervalRutekunjung: number;
+  intervalRutekunjung: number | null;
   namaIntervalRutekunjung: string;
   mulaiRutekunjung: Date;
-  mingguKe: number;
+  mingguKe: number | null;
   hariPasaran: string;
   keteranganRutekunjung: string;
   createdAt?: Date;

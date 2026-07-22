@@ -2,7 +2,7 @@ export interface AolTokenDto {
   id: number;
   access_token: string;
   refresh_token: string;
-  expires_in: number;
+  expires_in: number | null;
   token_type: string;
   scope: string;
   tgl_expired: string;

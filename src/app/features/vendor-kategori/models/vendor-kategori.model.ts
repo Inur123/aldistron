@@ -3,14 +3,14 @@ import { Vendor } from '../../vendor/models/vendor.model';
 
 export interface VendorKategori {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idAolvencat: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idAolvencat: number | null;
   namaKategori: string;
   keteranganKategori: string;
-  parentId: number;
+  parentId: number | null;
   haschild: boolean;
-  logAolcatId: number;
+  logAolcatId: number | null;
   connectionAol: boolean;
   createdAt?: Date;
   updatedAt?: Date;

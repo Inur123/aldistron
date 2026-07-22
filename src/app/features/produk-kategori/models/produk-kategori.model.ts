@@ -4,14 +4,14 @@ import { Product } from '../../product/models/product.model';
 
 export interface ProdukKategori {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idAolitemcat: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idAolitemcat: number | null;
   namaKategori: string;
   keteranganKategori: string;
-  parentId: number;
+  parentId: number | null;
   haschild: boolean;
-  logAolcatId: number;
+  logAolcatId: number | null;
   connectionAol: boolean;
   createdAt?: Date;
   updatedAt?: Date;

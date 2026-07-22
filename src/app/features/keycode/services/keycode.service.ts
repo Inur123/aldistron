@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class KeycodeService {
   constructor(private http: HttpClient) {}
 
   getKeycodes(): Observable<KeycodeDto[]> {
-    return this.http.get<KeycodeDto[]>("https://api.aldistron.com/keycode");
+    return this.http.get<KeycodeDto[]>("${environment.apiUrl}/keycode");
   }
 }

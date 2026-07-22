@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class ArmadaRinciService {
   constructor(private http: HttpClient) {}
 
   getArmadaRincis(): Observable<ArmadaRinciDto[]> {
-    return this.http.get<ArmadaRinciDto[]>("https://api.aldistron.com/armada-rinci");
+    return this.http.get<ArmadaRinciDto[]>("${environment.apiUrl}/armada-rinci");
   }
 }

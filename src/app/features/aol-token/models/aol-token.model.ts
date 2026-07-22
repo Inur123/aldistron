@@ -2,7 +2,7 @@ export interface AolToken {
   id: number;
   accessToken: string;
   refreshToken: string;
-  expiresIn: number;
+  expiresIn: number | null;
   tokenType: string;
   scope: string;
   tglExpired: Date;

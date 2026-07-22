@@ -7,16 +7,16 @@ export interface Userdata {
 
 export interface PelangganPoin {
   id: number;
-  idUserdata: number;
-  idPelanggan: number;
-  idJual: number;
-  idTagih: number;
-  idEvent: number;
+  idUserdata: number | null;
+  idPelanggan: number | null;
+  idJual: number | null;
+  idTagih: number | null;
+  idEvent: number | null;
   namaEvent: string;
-  poinMasuk: number;
-  poinKeluar: number;
+  poinMasuk: number | null;
+  poinKeluar: number | null;
   keterangan: string;
-  poinSaldo: number;
+  poinSaldo: number | null;
   aktifEvent: boolean;
   createdAt?: Date;
   updatedAt?: Date;

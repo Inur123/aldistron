@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class KunjunganSetorService {
   constructor(private http: HttpClient) {}
 
   getKunjunganSetors(): Observable<KunjunganSetorDto[]> {
-    return this.http.get<KunjunganSetorDto[]>("https://api.aldistron.com/kunjungan-setor");
+    return this.http.get<KunjunganSetorDto[]>("${environment.apiUrl}/kunjungan-setor");
   }
 }

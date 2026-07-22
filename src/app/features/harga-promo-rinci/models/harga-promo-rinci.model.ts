@@ -4,17 +4,17 @@ import { Product } from '../../product/models/product.model';
 
 export interface HargaPromoRinci {
   id: number;
-  idHargapromoProduk: number;
-  idProdukHargapromo: number;
-  idUnitHargapromo: number;
+  idHargapromoProduk: number | null;
+  idProdukHargapromo: number | null;
+  idUnitHargapromo: number | null;
   namaUnitHargapromo: string;
-  minQtyHargapromo: number;
-  maxQtyHargapromo: number;
-  idProdukBonus: number;
+  minQtyHargapromo: number | null;
+  maxQtyHargapromo: number | null;
+  idProdukBonus: number | null;
   namaProdukBonus: string;
-  qtyBonus: number;
-  idUnitBonus: number;
-  nilaiBonus: number;
+  qtyBonus: number | null;
+  idUnitBonus: number | null;
+  nilaiBonus: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 

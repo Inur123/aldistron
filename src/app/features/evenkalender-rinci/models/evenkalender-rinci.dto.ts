@@ -1,6 +1,6 @@
 export interface EvenkalenderRinciDto {
   id: number;
-  id_evenkalender: number;
+  id_evenkalender: number | null;
   keterangan: string;
   desa_even: string;
   kecamatan_even: string;

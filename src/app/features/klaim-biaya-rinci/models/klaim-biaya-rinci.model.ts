@@ -2,11 +2,11 @@ import { KlaimBiaya } from '../../klaim-biaya/models/klaim-biaya.model';
 
 export interface KlaimBiayaRinci {
   id: number;
-  idKlaimbiaya: number;
-  idAolexpenseRinci: number;
+  idKlaimbiaya: number | null;
+  idAolexpenseRinci: number | null;
   slugBiaya: string;
   namaBiaya: string;
-  nilaiBiaya: number;
+  nilaiBiaya: number | null;
   nomorAkun: string;
   keteranganBiaya: string;
   createdAt?: Date;

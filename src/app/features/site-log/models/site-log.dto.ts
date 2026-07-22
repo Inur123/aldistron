@@ -1,8 +1,8 @@
 export interface SiteLogDto {
   id: number;
   visitor_id: string;
-  userdata: number;
-  visits_count: number;
+  userdata: number | null;
+  visits_count: number | null;
   ip_address: string;
   requested_url: string;
   referer_page: string;

@@ -1,7 +1,7 @@
 export interface Kabarpasarchat {
   id: number;
-  idKabarpasar: number;
-  idUserdata: number;
+  idKabarpasar: number | null;
+  idUserdata: number | null;
   namaUserdata: string;
   isiChat: string;
   imageChat: string;

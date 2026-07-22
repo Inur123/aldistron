@@ -1,7 +1,7 @@
 export interface PelangganPersonalDto {
   id: number;
-  id_pelanggan: number;
-  id_pelangganrinci: number;
+  id_pelanggan: number | null;
+  id_pelangganrinci: number | null;
   nama_personal: string;
   nik_personal: string;
   handphone_personal: string;
@@ -12,11 +12,11 @@ export interface PelangganPersonalDto {
   bisnis_personal: string;
   keterangan_personal: string;
   alamat_personal: string;
-  desa_personal: number;
-  kecamatan_personal: number;
-  kota_personal: number;
-  propinsi_personal: number;
-  negara_personal: number;
+  desa_personal: number | null;
+  kecamatan_personal: number | null;
+  kota_personal: number | null;
+  propinsi_personal: number | null;
+  negara_personal: number | null;
   latlong_personal: string;
   image_personal: string;
   created_at?: string;

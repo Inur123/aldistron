@@ -6,17 +6,17 @@ import { Province } from '../../province/models/province.model';
 
 export interface UserdataRinci {
   id: number;
-  idUserdata: number;
+  idUserdata: number | null;
   nikUser: string;
   npwpUser: string;
   kkUser: string;
   namaUser: string;
   tgllahirUser: string;
   alamatUser: string;
-  villageId: number;
-  districtId: number;
-  regencyId: number;
-  provinceId: number;
+  villageId: number | null;
+  districtId: number | null;
+  regencyId: number | null;
+  provinceId: number | null;
   latlongAlamatUser: string;
   imageKtp: string;
   imageNpwp: string;

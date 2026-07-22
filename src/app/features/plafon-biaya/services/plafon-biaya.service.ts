@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class PlafonBiayaService {
   constructor(private http: HttpClient) {}
 
   getPlafonBiayas(): Observable<PlafonBiayaDto[]> {
-    return this.http.get<PlafonBiayaDto[]>("https://api.aldistron.com/plafon-biaya");
+    return this.http.get<PlafonBiayaDto[]>("${environment.apiUrl}/plafon-biaya");
   }
 }

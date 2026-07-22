@@ -3,12 +3,12 @@ import { Userdata } from '../../userdata/models/userdata.model';
 export interface Token {
   id: number;
   tgl: Date;
-  userdata: number;
+  userdata: number | null;
   token: string;
   apptoken: string;
   reftoken: string;
   lastAccess: Date;
-  status: number;
+  status: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 

@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class UserdataTargetService {
   constructor(private http: HttpClient) {}
 
   getUserdataTargets(): Observable<UserdataTargetDto[]> {
-    return this.http.get<UserdataTargetDto[]>("https://api.aldistron.com/userdata-target");
+    return this.http.get<UserdataTargetDto[]>("${environment.apiUrl}/userdata-target");
   }
 }

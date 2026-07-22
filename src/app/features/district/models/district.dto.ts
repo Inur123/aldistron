@@ -1,6 +1,6 @@
 export interface DistrictDto {
   id: number;
-  regency_id: number;
+  regency_id: number | null;
   name: string;
   rajaongkir: string;
   kodepos: string;

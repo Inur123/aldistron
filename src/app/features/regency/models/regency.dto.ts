@@ -1,6 +1,6 @@
 export interface RegencyDto {
   id: number;
-  province_id: number;
+  province_id: number | null;
   name: string;
   rajaongkir: string;
   kodepos: string;

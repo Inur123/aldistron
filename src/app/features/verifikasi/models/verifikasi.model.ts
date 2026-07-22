@@ -3,14 +3,14 @@ import { VerifikasiRinci } from '../../verifikasi-rinci/models/verifikasi-rinci.
 
 export interface Verifikasi {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
   perusahaan: string;
   namaAdministrator: string;
   emailAdministrator: string;
   emailAolconnector: string;
   serialNumber: string;
-  kodeMaksimal: number;
+  kodeMaksimal: number | null;
   expiredDate: Date;
   serialAktif: boolean;
   createdAt?: Date;

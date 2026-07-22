@@ -4,12 +4,12 @@ import { Pelanggan } from '../../pelanggan/models/pelanggan.model';
 
 export interface PengirimanRinci {
   id: number;
-  idPengiriman: number;
-  idKunjunganjual: number;
+  idPengiriman: number | null;
+  idKunjunganjual: number | null;
   nomorSalesorder: string;
-  idPelanggan: number;
+  idPelanggan: number | null;
   namaPelanggan: string;
-  nilaiSalesorder: number;
+  nilaiSalesorder: number | null;
   jsonbBarangTerkirim: any;
   keterangan: string;
   statusKirim: string;

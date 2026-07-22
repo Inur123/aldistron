@@ -3,7 +3,7 @@ export interface HttpStatus {
   jenis: string;
   status: string;
   statusIndo: string;
-  kode: number;
+  kode: number | null;
   keterangan: string;
   createdAt?: Date;
   updatedAt?: Date;

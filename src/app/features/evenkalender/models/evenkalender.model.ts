@@ -9,7 +9,7 @@ export interface Evenkalender {
   selesaiEven: Date;
   arrayData: string;
   statusEven: boolean;
-  creator: number;
+  creator: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 

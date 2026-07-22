@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class VerifikasiRinciService {
   constructor(private http: HttpClient) {}
 
   getVerifikasiRincis(): Observable<VerifikasiRinciDto[]> {
-    return this.http.get<VerifikasiRinciDto[]>(`https://api.aldistron.com/${this.endpoint}`);
+    return this.http.get<VerifikasiRinciDto[]>(`${environment.apiUrl}/${this.endpoint}`);
   }
 }

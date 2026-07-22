@@ -4,18 +4,18 @@ import { KlaimBiayaRinci } from '../../klaim-biaya-rinci/models/klaim-biaya-rinc
 
 export interface KlaimBiaya {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
-  idUserdata: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
+  idUserdata: number | null;
   kodeKlaim: string;
   kodeKunjungan: string;
-  totalKlaim: number;
-  idAolexpense: number;
+  totalKlaim: number | null;
+  idAolexpense: number | null;
   nomorExpense: string;
-  mingguKlaim: number;
-  bulanKlaim: number;
-  tahunKlaim: number;
+  mingguKlaim: number | null;
+  bulanKlaim: number | null;
+  tahunKlaim: number | null;
   selesai: boolean;
   createdAt?: Date;
   updatedAt?: Date;

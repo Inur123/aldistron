@@ -1,8 +1,8 @@
 export interface SiteLog {
   id: number;
   visitorId: string;
-  userdata: number;
-  visitsCount: number;
+  userdata: number | null;
+  visitsCount: number | null;
   ipAddress: string;
   requestedUrl: string;
   refererPage: string;

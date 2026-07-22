@@ -1,8 +1,8 @@
 export interface ProdukBrandDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
-  id_vendor: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
+  id_vendor: number | null;
   nama_brand: string;
   keterangan_brand: string;
   created_at?: string;

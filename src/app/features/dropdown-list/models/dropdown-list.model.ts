@@ -4,8 +4,8 @@ export interface DropdownList {
   stringParam: string;
   aliasParam: string;
   dateParam: Date;
-  integerParam: number;
-  floatParam: number;
+  integerParam: number | null;
+  floatParam: number | null;
   textParam: string;
   keteranganParam: string;
   createdAt?: Date;

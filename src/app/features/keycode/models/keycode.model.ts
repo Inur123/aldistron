@@ -1,8 +1,8 @@
 export interface Keycode {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
   keycodeKategori: string;
   keycodeAlphanum: string;
   keycodeAlphanumRequest: string;
@@ -10,7 +10,7 @@ export interface Keycode {
   keycodeNumberRequest: string;
   keycodeKeterangan: string;
   keycodeAktif: boolean;
-  idUserdata: number;
+  idUserdata: number | null;
   namaUserdata: string;
   emailUserdata: string;
   namaAdministrator: string;

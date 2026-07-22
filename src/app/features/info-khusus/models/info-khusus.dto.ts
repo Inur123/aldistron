@@ -1,10 +1,10 @@
 export interface InfoKhususDto {
   id: number;
-  id_aoldatabase: number;
-  id_aoldb: number;
-  id_cabang: number;
-  id_userdata: number;
-  id_pelanggan: number;
+  id_aoldatabase: number | null;
+  id_aoldb: number | null;
+  id_cabang: number | null;
+  id_userdata: number | null;
+  id_pelanggan: number | null;
   nama_infokhusus: string;
   slug: string;
   keterangan_infokhusus: string;

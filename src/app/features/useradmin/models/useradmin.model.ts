@@ -2,7 +2,7 @@ import { Userdata } from '../../userdata/models/userdata.model';
 
 export interface Useradmin {
   id: number;
-  idUserdata: number;
+  idUserdata: number | null;
   nama: string;
   username: string;
   password?: string;

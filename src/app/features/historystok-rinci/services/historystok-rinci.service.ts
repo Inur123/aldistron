@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class HistorystokRinciService {
   constructor(private http: HttpClient) {}
 
   getHistorystokRincis(): Observable<HistorystokRinciDto[]> {
-    return this.http.get<HistorystokRinciDto[]>("https://api.aldistron.com/historystok-rinci");
+    return this.http.get<HistorystokRinciDto[]>("${environment.apiUrl}/historystok-rinci");
   }
 }

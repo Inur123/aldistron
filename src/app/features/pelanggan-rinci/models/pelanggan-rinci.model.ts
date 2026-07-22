@@ -3,7 +3,7 @@ import { PelangganPersonal } from '../../pelanggan-personal/models/pelanggan-per
 
 export interface PelangganRinci {
   id: number;
-  idPelanggan: number;
+  idPelanggan: number | null;
   namaPelanggan: string;
   kontakPelanggan: string;
   kontakEmail: string;
@@ -11,11 +11,11 @@ export interface PelangganRinci {
   kontakAlamat: string;
   alamatKirimPelanggan: string;
   kodeDesa: string;
-  desaPelanggan: number;
-  kecamatanPelanggan: number;
-  kotaPelanggan: number;
-  propinsiPelanggan: number;
-  negaraPelanggan: number;
+  desaPelanggan: number | null;
+  kecamatanPelanggan: number | null;
+  kotaPelanggan: number | null;
+  propinsiPelanggan: number | null;
+  negaraPelanggan: number | null;
   latlongPelanggan: string;
   alamatTagihPelanggan: string;
   telpPelanggan: string;

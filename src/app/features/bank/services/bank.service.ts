@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class BankService {
   constructor(private http: HttpClient) {}
 
   getBanks(): Observable<BankDto[]> {
-    return this.http.get<BankDto[]>("https://api.aldistron.com/bank");
+    return this.http.get<BankDto[]>("${environment.apiUrl}/bank");
   }
 }

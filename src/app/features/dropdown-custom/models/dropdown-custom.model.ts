@@ -1,8 +1,8 @@
 export interface DropdownCustom {
   id: number;
-  idAoldatabase: number;
-  idAoldb: number;
-  idCabang: number;
+  idAoldatabase: number | null;
+  idAoldb: number | null;
+  idCabang: number | null;
   namaAdministrator: string;
   emailAdministrator: string;
   kategoriParam: string;
@@ -12,9 +12,9 @@ export interface DropdownCustom {
   slugParam: string;
   stringParam: string;
   dateParam: Date;
-  integerParam: number;
-  floatParam: number;
-  doubleParam: number;
+  integerParam: number | null;
+  floatParam: number | null;
+  doubleParam: number | null;
   textParam: string;
   valueParam: string;
   keteranganParam: string;

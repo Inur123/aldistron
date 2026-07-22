@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class KlaimBiayaService {
   constructor(private http: HttpClient) {}
 
   getKlaimBiayas(): Observable<KlaimBiayaDto[]> {
-    return this.http.get<KlaimBiayaDto[]>("https://api.aldistron.com/klaim-biaya");
+    return this.http.get<KlaimBiayaDto[]>("${environment.apiUrl}/klaim-biaya");
   }
 }

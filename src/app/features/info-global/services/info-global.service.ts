@@ -1,3 +1,4 @@
+import { environment } from "../../../../environments/environment";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,6 +13,6 @@ export class InfoGlobalService {
   constructor(private http: HttpClient) {}
 
   getInfoGlobals(): Observable<InfoGlobalDto[]> {
-    return this.http.get<InfoGlobalDto[]>("https://api.aldistron.com/info-global");
+    return this.http.get<InfoGlobalDto[]>("${environment.apiUrl}/info-global");
   }
 }
