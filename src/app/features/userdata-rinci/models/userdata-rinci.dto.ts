@@ -1,0 +1,32 @@
+export interface UserdataRinciDto {
+  id: number;
+  id_userdata: number;
+  nik_user: string;
+  npwp_user: string;
+  kk_user: string;
+  nama_user: string;
+  tgllahir_user: string;
+  alamat_user: string;
+  village_id: number;
+  district_id: number;
+  regency_id: number;
+  province_id: number;
+  latlong_alamat_user: string;
+  image_ktp: string;
+  image_npwp: string;
+  image_kk: string;
+  jenis_jaminan: string;
+  nomor_jaminan: string;
+  image_jaminan: string;
+  image_doclegal_satu: string;
+  image_doclegal_dua: string;
+  lock_legal: boolean;
+  emergency_relasi: string;
+  emergency_nama: string;
+  emergency_handphone: string;
+  emergency_alamat: string;
+  jenjang_pendidikan: string;
+  jurusan_pendidikan: string;
+  created_at?: string;
+  updated_at?: string;
+}

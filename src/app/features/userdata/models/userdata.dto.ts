@@ -1,0 +1,30 @@
+export interface UserdataDto {
+  id: number;
+  id_aoldatabase: number;
+  id_cabang: number;
+  id_aoldb: number;
+  id_aolemp: number;
+  sapaan: string;
+  nama: string;
+  username: string;
+  email: string;
+  password?: string;
+  no_handphone: string;
+  status: boolean;
+  level: string;
+  kelas_akses: string;
+  alamat: string;
+  upline: string;
+  id_vendor: number;
+  nama_vendor: string;
+  aktif_userdata: boolean;
+  biaya_tanpa_kunjungan: boolean;
+  metode_jual: string;
+  aolsales_id: number;
+  log_aolemp_id: number;
+  log_aolbranch_id: number;
+  aol_updated: boolean;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at: string;
+}

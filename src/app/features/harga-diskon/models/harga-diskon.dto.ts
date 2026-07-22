@@ -1,0 +1,14 @@
+export interface HargaDiskonDto {
+  id: number;
+  id_aoldatabase: number;
+  id_aoldb: number;
+  id_cabang: number;
+  nama_hargadiskon: string;
+  keterangan_hargadiskon: string;
+  aktif_hargadiskon: boolean;
+  awal_hargadiskon: string;
+  akhir_hargadiskon: string;
+  tipe_alokasi_hargadiskon: string;
+  created_at?: string;
+  updated_at?: string;
+}

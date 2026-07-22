@@ -1,0 +1,30 @@
+export interface PelangganRinciDto {
+  id: number;
+  id_pelanggan: number;
+  nama_pelanggan: string;
+  kontak_pelanggan: string;
+  kontak_email: string;
+  kontak_handphone: string;
+  kontak_alamat: string;
+  alamat_kirim_pelanggan: string;
+  kode_desa: string;
+  desa_pelanggan: number;
+  kecamatan_pelanggan: number;
+  kota_pelanggan: number;
+  propinsi_pelanggan: number;
+  negara_pelanggan: number;
+  latlong_pelanggan: string;
+  alamat_tagih_pelanggan: string;
+  telp_pelanggan: string;
+  handphone_pelanggan: string;
+  email_pelanggan: string;
+  nik_pelanggan: string;
+  npwp_pelanggan: string;
+  keterangan_pelanggan: string;
+  infokhusus_pelanggan: string;
+  image_pelanggan: string;
+  image_ktp: string;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string | null;
+}

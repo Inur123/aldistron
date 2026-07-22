@@ -1,0 +1,30 @@
+export interface PelangganDto {
+  id: number;
+  id_aoldatabase: number;
+  id_aoldb: number;
+  id_cabang: number;
+  id_aolcust: number;
+  id_aolsales: number;
+  id_jangkapiutang: number;
+  id_pelanggankategori: number;
+  nomor_pelanggan: string;
+  nama_pelanggan: string;
+  siklus_kunjungan: string;
+  hari_kunjungan: string;
+  id_hargajual: number;
+  id_hargadiskon: number;
+  id_hargapromo: number;
+  id_hargapaket: number;
+  id_hargamomen: number;
+  id_piutangplafon: number;
+  id_piutangmomen: number;
+  aktif_pelanggan: boolean;
+  price_pelanggan: string;
+  log_aolcat_id: number;
+  log_aolbranch_id: number;
+  log_aolsales_id: number;
+  log_aolterm_id: number;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string | null;
+}

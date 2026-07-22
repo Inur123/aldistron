@@ -1,0 +1,30 @@
+export interface KunjunganDto {
+  id: number;
+  id_aoldatabase: number;
+  id_aoldb: number;
+  id_cabang: number;
+  id_userdata: number;
+  id_pelanggan: number;
+  id_rutekunjung: number;
+  id_aolcust: number;
+  kode_kunjungan: string;
+  tanggal_kunjungan: string;
+  id_kunjunganjual: number;
+  nilai_kunjungan_jual: number;
+  id_kunjungantagih: number;
+  nilai_kunjungan_tagih: number;
+  nilai_tagih_tunai: number;
+  nilai_tagih_transfer: number;
+  nilai_tagih_cekgiro: number;
+  nilai_total_tagih: number;
+  status_jual: string;
+  status_tagih: string;
+  info_tidak_jual: string;
+  info_tidak_tagih: string;
+  stsjual: boolean;
+  ststagih: boolean;
+  latlong: string;
+  kunjungan_selesai: boolean;
+  created_at?: string;
+  updated_at?: string;
+}
