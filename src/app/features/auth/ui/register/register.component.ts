@@ -1,102 +1,163 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthFacade } from '../../facades/auth.facade';
-import { LucideAngularModule, User, Mail, Lock, KeyRound, UserPlus, ArrowRight } from 'lucide-angular';
+import { LucideAngularModule, Eye, EyeOff } from 'lucide-angular';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
+import { toast } from '@spartan-ng/brain/sonner';
 
-import { AuthHeaderComponent } from '../../components/auth-header.component';
+// Spartan UI
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, LucideAngularModule, AuthHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    FormsModule,
+    RouterLink,
+    LucideAngularModule,
+    ...HlmCardImports,
+    ...HlmFieldImports,
+    ...HlmInputImports,
+    ...HlmButtonImports,
+    ...HlmSpinnerImports,
+  ],
   template: `
-    <div class="min-h-screen bg-slate-950 flex items-center justify-center p-4 font-sans text-slate-100">
-      <div class="w-full max-w-md bg-slate-900/80 border border-slate-800 rounded-3xl p-8 shadow-2xl backdrop-blur-xl">
-        <!-- Reusable Header dari folder components/ -->
-        <app-auth-header title="Registrasi Pengguna" subtitle="Aktivasi Lisensi Kode Verifikasi Accurate Online (AOL)">
-          <lucide-angular [img]="userPlusIcon" class="w-6 h-6"></lucide-angular>
-        </app-auth-header>
+    <div class="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+      <div class="w-full max-w-sm">
 
-        <!-- Form -->
-        <form (ngSubmit)="onRegister()" class="space-y-4">
-          <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Nama Lengkap</label>
-            <div class="relative">
-              <span class="absolute left-4 top-3.5 text-slate-500">
-                <lucide-angular [img]="userIcon" class="w-5 h-5"></lucide-angular>
-              </span>
-              <input type="text" [(ngModel)]="nama" name="nama" required
-                     placeholder="Budi Santoso"
-                     class="w-full bg-slate-800/80 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"/>
-            </div>
+        <hlm-card>
+          <hlm-card-header>
+            <h3 hlmCardTitle>Buat Akun Baru</h3>
+            <p hlmCardDescription>Isi informasi di bawah untuk membuat akun Anda</p>
+          </hlm-card-header>
+
+          <div hlmCardContent>
+            <!-- ngNativeValidate: aktifkan HTML5 browser validation -->
+            <form ngNativeValidate (ngSubmit)="onRegister()" class="flex flex-col gap-6">
+              <hlm-field-group>
+
+                <!-- Nama -->
+                <hlm-field>
+                  <label hlmFieldLabel for="nama">
+                    Nama Lengkap
+                  </label>
+                  <input
+                    hlmInput
+                    id="nama"
+                    type="text"
+                    name="nama"
+                    [(ngModel)]="nama"
+                    placeholder="Budi Santoso"
+                    required
+                  />
+                </hlm-field>
+
+                <!-- Email -->
+                <hlm-field>
+                  <label hlmFieldLabel for="email">
+                    Email
+                  </label>
+                  <input
+                    hlmInput
+                    id="email"
+                    type="email"
+                    name="email"
+                    [(ngModel)]="email"
+                    placeholder="budi@perusahaan.com"
+                    required
+                  />
+                </hlm-field>
+
+                <!-- Password with Eye Toggle -->
+                <hlm-field>
+                  <label hlmFieldLabel for="password">
+                    Password
+                  </label>
+                  <div class="relative">
+                    <input
+                      hlmInput
+                      id="password"
+                      [type]="showPassword() ? 'text' : 'password'"
+                      name="password"
+                      [(ngModel)]="password"
+                      placeholder="••••••••"
+                      class="pr-10"
+                      required
+                    />
+                    <button
+                      type="button"
+                      (click)="showPassword.set(!showPassword())"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                      tabindex="-1"
+                    >
+                      <lucide-angular
+                        [img]="showPassword() ? eyeOffIcon : eyeIcon"
+                        class="w-4 h-4 cursor-pointer"
+                      />
+                    </button>
+                  </div>
+                </hlm-field>
+
+                <!-- Token AOL -->
+                <hlm-field>
+                  <label hlmFieldLabel for="token">
+                    Kode Verifikasi
+                  </label>
+                  <input
+                    hlmInput
+                    id="token"
+                    type="text"
+                    name="tokenVerifikasi"
+                    [(ngModel)]="tokenVerifikasi"
+                    placeholder="VERIFY-AOL-XXXX-XXXX"
+                    class="uppercase"
+                    required
+                  />
+                </hlm-field>
+
+              </hlm-field-group>
+
+              <!-- Submit Button with Spinner -->
+              <button
+                hlmBtn
+                type="submit"
+                class="w-full cursor-pointer"
+                [disabled]="facade.isLoading()"
+              >
+                @if (facade.isLoading()) {
+                  <hlm-spinner />
+                  Mendaftar...
+                } @else {
+                  Buat Akun
+                }
+              </button>
+            </form>
           </div>
 
-          <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Email Pengguna</label>
-            <div class="relative">
-              <span class="absolute left-4 top-3.5 text-slate-500">
-                <lucide-angular [img]="mailIcon" class="w-5 h-5"></lucide-angular>
-              </span>
-              <input type="email" [(ngModel)]="email" name="email" required
-                     placeholder="budi@perusahaan.com"
-                     class="w-full bg-slate-800/80 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"/>
-            </div>
+          <div hlmCardFooter>
+            <p class="text-center text-sm w-full">
+              Sudah punya akun?
+              <a routerLink="/auth/login" class="underline underline-offset-4 font-medium">
+                Login
+              </a>
+            </p>
           </div>
+        </hlm-card>
 
-          <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Password</label>
-            <div class="relative">
-              <span class="absolute left-4 top-3.5 text-slate-500">
-                <lucide-angular [img]="lockIcon" class="w-5 h-5"></lucide-angular>
-              </span>
-              <input type="password" [(ngModel)]="password" name="password" required
-                     placeholder="••••••••"
-                     class="w-full bg-slate-800/80 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"/>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1.5">Kode Verifikasi AOL (Token Session)</label>
-            <div class="relative">
-              <span class="absolute left-4 top-3.5 text-amber-500">
-                <lucide-angular [img]="keyRoundIcon" class="w-5 h-5"></lucide-angular>
-              </span>
-              <input type="text" [(ngModel)]="tokenVerifikasi" name="tokenVerifikasi" required
-                     placeholder="VERIFY-AOL-XXXX-XXXX"
-                     class="w-full bg-slate-800/80 border border-amber-500/40 rounded-xl pl-12 pr-4 py-3 text-sm text-amber-200 placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all uppercase"/>
-            </div>
-          </div>
-
-          @if (facade.error()) {
-            <div class="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs">
-              {{ facade.error() }}
-            </div>
-          }
-
-          <button type="submit" [disabled]="facade.isLoading()"
-                  class="w-full mt-2 py-3.5 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 text-sm disabled:opacity-50">
-            <span>{{ facade.isLoading() ? 'Mendaftar & Verifikasi...' : 'Daftar Akun Baru' }}</span>
-            <lucide-angular [img]="arrowRightIcon" class="w-4 h-4"></lucide-angular>
-          </button>
-        </form>
-
-        <div class="mt-6 text-center text-xs text-slate-400">
-          Sudah memiliki akun? 
-          <a routerLink="/auth/login" class="text-indigo-400 hover:underline font-semibold">Masuk disini</a>
-        </div>
       </div>
     </div>
-  `
+  `,
 })
 export class RegisterComponent {
-  readonly userIcon = User;
-  readonly mailIcon = Mail;
-  readonly lockIcon = Lock;
-  readonly keyRoundIcon = KeyRound;
-  readonly userPlusIcon = UserPlus;
-  readonly arrowRightIcon = ArrowRight;
+  readonly eyeIcon = Eye;
+  readonly eyeOffIcon = EyeOff;
+
+  showPassword = signal(false);
 
   nama = '';
   email = '';
@@ -106,18 +167,22 @@ export class RegisterComponent {
   constructor(public facade: AuthFacade, private router: Router) {}
 
   onRegister(): void {
-    if (!this.nama || !this.email || !this.password || !this.tokenVerifikasi) return;
-
     this.facade.register({
       nama: this.nama,
       email: this.email,
       password: this.password,
-      token_verifikasi: this.tokenVerifikasi
+      token_verifikasi: this.tokenVerifikasi,
     }).subscribe({
       next: (res) => {
         if (res.status) {
+          toast.success('Akun berhasil dibuat! Silahkan login.');
           this.router.navigate(['/']);
+        } else {
+          toast.error(this.facade.error() ?? 'Registrasi gagal, coba lagi.');
         }
+      },
+      error: () => {
+        toast.error('Terjadi kesalahan, coba lagi.');
       }
     });
   }

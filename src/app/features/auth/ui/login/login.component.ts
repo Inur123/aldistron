@@ -1,76 +1,130 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthFacade } from '../../facades/auth.facade';
-import { LucideAngularModule, Mail, Lock, LogIn, ArrowRight } from 'lucide-angular';
+import { LucideAngularModule, Eye, EyeOff } from 'lucide-angular';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
+import { toast } from '@spartan-ng/brain/sonner';
 
-import { AuthHeaderComponent } from '../../components/auth-header.component';
+// Spartan UI
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, LucideAngularModule, AuthHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    FormsModule,
+    RouterLink,
+    LucideAngularModule,
+    ...HlmCardImports,
+    ...HlmFieldImports,
+    ...HlmInputImports,
+    ...HlmButtonImports,
+    ...HlmSpinnerImports,
+  ],
   template: `
-    <div class="min-h-screen bg-slate-950 flex items-center justify-center p-4 font-sans text-slate-100">
-      <div class="w-full max-w-md bg-slate-900/80 border border-slate-800 rounded-3xl p-8 shadow-2xl backdrop-blur-xl">
-        <!-- Reusable Header dari folder components/ -->
-        <app-auth-header title="Login Aldistron" subtitle="Masuk ke sistem ERP & Sales Force Platform">
-          <lucide-angular [img]="logInIcon" class="w-6 h-6"></lucide-angular>
-        </app-auth-header>
+    <div class="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+      <div class="w-full max-w-sm">
 
-        <!-- Form -->
-        <form (ngSubmit)="onLogin()" class="space-y-5">
-          <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email Administrator</label>
-            <div class="relative">
-              <span class="absolute left-4 top-3.5 text-slate-500">
-                <lucide-angular [img]="mailIcon" class="w-5 h-5"></lucide-angular>
-              </span>
-              <input type="email" [(ngModel)]="email" name="email" required
-                     placeholder="admin@aldistron.com"
-                     class="w-full bg-slate-800/80 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"/>
-            </div>
+        <hlm-card>
+          <hlm-card-header>
+            <h3 hlmCardTitle>Login ke Akun Anda</h3>
+            <p hlmCardDescription>Masukkan email di bawah untuk masuk ke sistem</p>
+          </hlm-card-header>
+
+          <div hlmCardContent>
+            <!-- ngNativeValidate: aktifkan HTML5 browser validation -->
+            <form ngNativeValidate (ngSubmit)="onLogin()" class="flex flex-col gap-6">
+              <hlm-field-group>
+
+                <!-- Email -->
+                <hlm-field>
+                  <label hlmFieldLabel for="email">
+                    Email
+                  </label>
+                  <input
+                    hlmInput
+                    id="email"
+                    type="email"
+                    name="email"
+                    [(ngModel)]="email"
+                    placeholder="admin@aldistron.com"
+                    required
+                  />
+                </hlm-field>
+
+                <!-- Password with Eye Toggle -->
+                <hlm-field>
+                  <label hlmFieldLabel for="password">
+                    Password
+                  </label>
+                  <div class="relative">
+                    <input
+                      hlmInput
+                      id="password"
+                      [type]="showPassword() ? 'text' : 'password'"
+                      name="password"
+                      [(ngModel)]="password"
+                      placeholder="••••••••"
+                      class="pr-10"
+                      required
+                    />
+                    <button
+                      type="button"
+                      (click)="showPassword.set(!showPassword())"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                      tabindex="-1"
+                    >
+                      <lucide-angular
+                        [img]="showPassword() ? eyeOffIcon : eyeIcon"
+                        class="w-4 h-4 cursor-pointer"
+                      />
+                    </button>
+                  </div>
+                </hlm-field>
+
+              </hlm-field-group>
+
+              <!-- Submit Button with Spinner -->
+              <button
+                hlmBtn
+                type="submit"
+                class="w-full cursor-pointer"
+                [disabled]="facade.isLoading()"
+              >
+                @if (facade.isLoading()) {
+                  <hlm-spinner />
+                  Memproses...
+                } @else {
+                  Login
+                }
+              </button>
+            </form>
           </div>
 
-          <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Password</label>
-            <div class="relative">
-              <span class="absolute left-4 top-3.5 text-slate-500">
-                <lucide-angular [img]="lockIcon" class="w-5 h-5"></lucide-angular>
-              </span>
-              <input type="password" [(ngModel)]="password" name="password" required
-                     placeholder="••••••••"
-                     class="w-full bg-slate-800/80 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"/>
-            </div>
+          <div hlmCardFooter>
+            <p class="text-center text-sm w-full">
+              Belum punya akun?
+              <a routerLink="/auth/register" class="underline underline-offset-4 font-medium">
+                Daftar
+              </a>
+            </p>
           </div>
+        </hlm-card>
 
-          @if (facade.error()) {
-            <div class="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs">
-              {{ facade.error() }}
-            </div>
-          }
-
-          <button type="submit" [disabled]="facade.isLoading()"
-                  class="w-full py-3.5 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 text-sm disabled:opacity-50">
-            <span>{{ facade.isLoading() ? 'Memproses...' : 'Masuk Aplikasi' }}</span>
-            <lucide-angular [img]="arrowRightIcon" class="w-4 h-4"></lucide-angular>
-          </button>
-        </form>
-
-        <div class="mt-6 text-center text-xs text-slate-400">
-          Belum memiliki lisensi? 
-          <a routerLink="/auth/register" class="text-indigo-400 hover:underline font-semibold">Registrasi Kode Verifikasi</a>
-        </div>
       </div>
     </div>
-  `
+  `,
 })
 export class LoginComponent {
-  readonly mailIcon = Mail;
-  readonly lockIcon = Lock;
-  readonly logInIcon = LogIn;
-  readonly arrowRightIcon = ArrowRight;
+  readonly eyeIcon = Eye;
+  readonly eyeOffIcon = EyeOff;
+
+  showPassword = signal(false);
 
   email = '';
   password = '';
@@ -78,12 +132,17 @@ export class LoginComponent {
   constructor(public facade: AuthFacade, private router: Router) {}
 
   onLogin(): void {
-    if (!this.email || !this.password) return;
     this.facade.login({ email: this.email, password: this.password }).subscribe({
       next: (res) => {
         if (res.status) {
+          toast.success('Login berhasil! Selamat datang.');
           this.router.navigate(['/']);
+        } else {
+          toast.error(this.facade.error() ?? 'Login gagal, coba lagi.');
         }
+      },
+      error: () => {
+        toast.error('Terjadi kesalahan, coba lagi.');
       }
     });
   }
