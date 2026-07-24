@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { DashboardHomeComponent } from './features/dashboard/ui/dashboard-home/dashboard-home.component';
 
 export const routes: Routes = [
@@ -8,13 +9,17 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'dashboard',
-    component: DashboardHomeComponent
-  },
-  {
     path: 'auth',
     loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
   },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardHomeComponent
+      },
   {
     path: 'products',
     loadChildren: () => import('./features/product/product.routes').then(m => m.PRODUCT_ROUTES)
@@ -362,6 +367,8 @@ export const routes: Routes = [
   {
     path: 'userdata-target-rinci',
     loadChildren: () => import('./features/userdata-target-rinci/userdata-target-rinci.routes').then(m => m.USERDATA_TARGET_RINCI_ROUTES)
+  }
+    ]
   }
 ];
 

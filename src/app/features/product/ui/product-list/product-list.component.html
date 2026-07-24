@@ -1,73 +1,399 @@
-<div class="max-w-5xl mx-auto p-6 bg-slate-900 min-h-screen text-white font-sans">
-  <!-- Header -->
-  <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-800">
-    <div class="flex items-center gap-3">
-      <div class="p-3 bg-indigo-500/10 text-indigo-400 rounded-xl">
-        <lucide-icon [img]="icons.Package" class="w-6 h-6"></lucide-icon>
-      </div>
-      <div>
-        <h1 class="text-2xl font-bold tracking-tight text-white">Modul Produk (RAPIDATA Standard)</h1>
-        <p class="text-sm text-slate-400">Implementasi lengkap 40+ field produk sesuai spesifikasi model pengguna</p>
-      </div>
+<div class="w-full font-sans space-y-4">
+  <!-- Top Header Title & Right Action Button -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight text-foreground">Modul Produk</h1>
+      <p class="text-xs text-muted-foreground mt-0.5">Kelola katalog produk, brand, kategori, dan produk kompetitor</p>
     </div>
 
-    <button 
-      (click)="facade.loadProducts()" 
-      class="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium rounded-xl transition-all shadow-lg shadow-indigo-600/30">
-      <lucide-icon [img]="icons.RefreshCw" class="w-4 h-4" [class.animate-spin]="facade.isLoading()"></lucide-icon>
-      Reload Data
-    </button>
+    <!-- Action Button Add Produk -->
+    <div class="flex items-center gap-2">
+      <button 
+        type="button"
+        (click)="openAddModal()"
+        class="inline-flex items-center gap-2 px-3.5 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-semibold rounded-lg shadow-xs transition-colors cursor-pointer"
+      >
+        <lucide-icon [img]="plusIcon" class="size-4"></lucide-icon>
+        <span>Tambah Produk</span>
+      </button>
+    </div>
   </div>
 
-  <!-- Product List -->
-  <div class="space-y-4">
-    @for (product of facade.products(); track product.id) {
-      <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/60 shadow-lg">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4 pb-4 border-b border-slate-700/50">
+  <!-- Sub-Module Tabs Bar -->
+  <div class="flex items-center gap-1.5 border-b border-border/80 pb-2 overflow-x-auto thin-scrollbar">
+    <a 
+      routerLink="/products" 
+      routerLinkActive 
+      #rlaProd="routerLinkActive"
+      [class]="rlaProd.isActive ? 'bg-accent text-accent-foreground font-semibold shadow-2xs' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'"
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Produk
+    </a>
+    <a 
+      routerLink="/produk-brands" 
+      routerLinkActive 
+      #rlaBrand="routerLinkActive"
+      [class]="rlaBrand.isActive ? 'bg-accent text-accent-foreground font-semibold shadow-2xs' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'"
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Produk Brand
+    </a>
+    <a 
+      routerLink="/produk-kategori" 
+      routerLinkActive 
+      #rlaKat="routerLinkActive"
+      [class]="rlaKat.isActive ? 'bg-accent text-accent-foreground font-semibold shadow-2xs' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'"
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Produk Kategori
+    </a>
+    <a 
+      routerLink="/produk-kompetitor" 
+      routerLinkActive 
+      #rlaKomp="routerLinkActive"
+      [class]="rlaKomp.isActive ? 'bg-accent text-accent-foreground font-semibold shadow-2xs' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'"
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Produk Kompetitor
+    </a>
+  </div>
+
+  <!-- 2-COLUMN SPLIT GRID LAYOUT -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+    
+    <!-- LEFT PANEL (Kiri): Detail & Edit Rincian Spesifikasi Produk (7 COLS) -->
+    <div class="lg:col-span-7 bg-card border border-border rounded-xl shadow-xs overflow-hidden">
+      @if (selectedProductForPanel()) {
+        <!-- Panel Header -->
+        <div class="p-4 border-b border-border flex items-center justify-between bg-muted/20">
           <div>
-            <div class="flex items-center gap-3">
-              <span class="text-xs px-2.5 py-1 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-md font-mono">
-                {{ product.nomorProduk }}
+            <h2 class="text-sm font-bold text-foreground flex items-center gap-2">
+              <lucide-icon [img]="packageIcon" class="size-4 text-primary"></lucide-icon>
+              <span>{{ detailProduct().namaProduk || 'Detail Produk' }}</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-muted text-muted-foreground border border-border">
+                {{ detailProduct().nomorProduk }}
               </span>
-              <h2 class="text-xl font-bold text-white">{{ product.namaProduk }}</h2>
+            </h2>
+            <p class="text-[11px] text-muted-foreground mt-0.5">Kelola konversi unit, minim stok, dimensi, dan barcode rincian produk</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span 
+              class="text-[10px] font-semibold px-2 py-0.5 rounded-full"
+              [class]="panelMode() === 'edit' ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'"
+            >
+              {{ panelMode() === 'edit' ? 'Mode Edit' : 'Mode Read-Only' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Panel Form Body (Tampil semua penuh ke bawah tanpa scrollbar internal) -->
+        <div class="p-4 space-y-4 text-xs">
+          <!-- Section 1: Informasi Utama & Identitas -->
+          <div class="space-y-3">
+            <h3 class="font-bold text-foreground border-b border-border pb-1 flex items-center justify-between">
+              <span>1. Informasi Utama & Identitas RAPIDATA</span>
+            </h3>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block font-medium text-foreground mb-1">Nama Produk</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" [(ngModel)]="detailProduct().namaProduk" class="w-full" />
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Kode / Nomor Produk</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" [(ngModel)]="detailProduct().nomorProduk" class="w-full font-mono" />
+              </div>
             </div>
-            <p class="text-sm text-slate-400 mt-1">
-              Vendor: <span class="text-slate-200">{{ product.namaVendorProduk }}</span> | 
-              Brand: <span class="text-slate-200">{{ product.namaBrandProduk }}</span> | 
-              Kategori: <span class="text-slate-200">{{ product.namaKategoriProduk }}</span>
-            </p>
+
+            <div class="grid grid-cols-3 gap-3">
+              <div>
+                <label class="block font-medium text-foreground mb-1">Vendor Utama</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" [(ngModel)]="detailProduct().namaVendorProduk" class="w-full h-9" />
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Brand</label>
+                <hlm-combobox class="w-full" [(value)]="detailProduct().namaBrandProduk">
+                  <hlm-combobox-input [placeholder]="detailProduct().namaBrandProduk || 'Pilih Brand'" class="w-full h-9" />
+                  <hlm-combobox-content *hlmComboboxPortal class="w-(--brn-combobox-width) p-0">
+                    <hlm-combobox-empty>Brand tidak ditemukan.</hlm-combobox-empty>
+                    <div hlmComboboxList>
+                      @for (b of brandFacade.brands(); track b.id) {
+                        <hlm-combobox-item [value]="b.namaBrand" (selected)="detailProduct().namaBrandProduk = b.namaBrand">
+                          {{ b.namaBrand }}
+                        </hlm-combobox-item>
+                      }
+                    </div>
+                  </hlm-combobox-content>
+                </hlm-combobox>
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Kategori</label>
+                <hlm-combobox class="w-full" [(value)]="detailProduct().namaKategoriProduk">
+                  <hlm-combobox-input [placeholder]="detailProduct().namaKategoriProduk || 'Pilih Kategori'" class="w-full h-9" />
+                  <hlm-combobox-content *hlmComboboxPortal class="w-(--brn-combobox-width) p-0">
+                    <hlm-combobox-empty>Kategori tidak ditemukan.</hlm-combobox-empty>
+                    <div hlmComboboxList>
+                      @for (kat of kategoriFacade.categories(); track kat.id) {
+                        <hlm-combobox-item [value]="kat.namaKategori" (selected)="detailProduct().namaKategoriProduk = kat.namaKategori">
+                          {{ kat.namaKategori }}
+                        </hlm-combobox-item>
+                      }
+                    </div>
+                  </hlm-combobox-content>
+                </hlm-combobox>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block font-medium text-foreground mb-1">Barcode Produk</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" [(ngModel)]="detailProduct().barcodeProduk" class="w-full h-9 font-mono" />
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Jenis Produk</label>
+                <select [disabled]="panelMode() === 'view'" [(ngModel)]="detailProduct().jenisProduk" class="w-full h-9 rounded-md border border-input bg-background px-3 py-2 text-xs font-sans disabled:opacity-75 focus:outline-hidden focus:ring-2 focus:ring-ring">
+                  <option value="Barang">Barang</option>
+                  <option value="Jasa">Jasa</option>
+                </select>
+              </div>
+            </div>
           </div>
 
-          <span class="text-xs px-3 py-1.5 rounded-full font-semibold"
-                [class]="product.aktifProduk ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400'">
-            {{ product.aktifProduk ? 'Status: Aktif' : 'Status: Non-Aktif' }}
-          </span>
+          <!-- Section 2: Konversi & Aturan Stok -->
+          <div class="space-y-3 pt-2">
+            <h3 class="font-bold text-foreground border-b border-border pb-1">2. Konversi Unit & Aturan Stok</h3>
+            <div class="grid grid-cols-4 gap-3">
+              <div>
+                <label class="block font-medium text-foreground mb-1">Konversi Unit 1</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" type="number" [(ngModel)]="detailProduct().konversiUnit1" class="w-full" />
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Konversi Unit 2</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" type="number" [(ngModel)]="detailProduct().konversiUnit2" class="w-full" />
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Minim Beli (Unit 1)</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" type="number" [(ngModel)]="detailProduct().minimBeliUnit1" class="w-full" />
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Minim Stok Warning</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" type="number" [(ngModel)]="detailProduct().minimStokUnit1" class="w-full" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Berat & Dimensi Kemasan -->
+          <div class="space-y-3 pt-2">
+            <h3 class="font-bold text-foreground border-b border-border pb-1">3. Berat & Dimensi Kemasan</h3>
+            <div>
+              <label class="block font-medium text-foreground mb-1">Gramasi Produk (g)</label>
+              <input hlmInput [disabled]="panelMode() === 'view'" type="number" [(ngModel)]="detailProduct().gramasiProduk" class="w-full" />
+            </div>
+
+            <div class="grid grid-cols-3 gap-3">
+              <div>
+                <label class="block font-medium text-foreground mb-1">Panjang Kecil (cm)</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" type="number" [(ngModel)]="detailProduct().panjangProdukKecil" class="w-full" />
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Lebar Kecil (cm)</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" type="number" [(ngModel)]="detailProduct().lebarProdukKecil" class="w-full" />
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Tinggi Kecil (cm)</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" type="number" [(ngModel)]="detailProduct().tinggiProdukKecil" class="w-full" />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+        <!-- Panel Footer -->
+        <div class="p-4 border-t border-border flex justify-between items-center bg-muted/30">
+          <button 
+            (click)="deleteProduct(detailProduct().id)"
+            class="px-3 py-1.5 rounded-lg text-destructive hover:bg-destructive/10 text-xs font-semibold cursor-pointer transition-colors"
+          >
+            Hapus Produk Ini
+          </button>
+          
+          @if (panelMode() === 'edit') {
+            <button 
+              (click)="savePanelProduct()"
+              class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 cursor-pointer shadow-xs transition-colors"
+            >
+              <lucide-icon [img]="checkCircleIcon" class="size-3.5"></lucide-icon>
+              <span>Simpan Perubahan</span>
+            </button>
+          }
+        </div>
+      } @else {
+        <div class="p-12 text-center text-muted-foreground text-xs space-y-2">
+          <lucide-icon [img]="packageIcon" class="size-8 mx-auto text-muted-foreground/50"></lucide-icon>
+          <p class="font-medium">Pilih produk dari tabel di sebelah kanan untuk melihat / mengedit rincian spesifikasi.</p>
+        </div>
+      }
+    </div>
+
+    <!-- RIGHT PANEL (Kanan): Simpel Tabel Produk (5 COLS) -->
+    <div class="lg:col-span-5 bg-card border border-border rounded-xl shadow-xs overflow-hidden">
+      <div class="p-3.5 border-b border-border bg-muted/20 flex items-center justify-between">
+        <h2 class="text-xs font-bold text-foreground">Daftar Produk (Ringkas)</h2>
+        <span class="text-[10px] text-muted-foreground flex items-center gap-1">
+          <span>Klik aksi</span>
+          <lucide-icon [img]="arrowLeftIcon" class="size-3 text-primary inline"></lucide-icon>
+          <span>untuk muat data</span>
+        </span>
+      </div>
+
+      <div class="overflow-x-auto thin-scrollbar">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-border bg-muted/40 text-muted-foreground font-semibold select-none">
+              <th class="py-2.5 px-3 w-8 text-center">No</th>
+              <th class="py-2.5 px-3 font-semibold">Nama Produk</th>
+              <th class="py-2.5 px-3 font-semibold text-right pr-3">Aksi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border/60">
+            @for (product of facade.products(); track product.id; let i = $index) {
+              <tr 
+                (click)="selectProductForPanel(product, 'edit')"
+                [class]="selectedProductForPanel()?.id === product.id ? 'bg-primary/10 border-l-2 border-l-primary' : 'hover:bg-accent/30'"
+                class="transition-colors cursor-pointer group"
+              >
+                <!-- No -->
+                <td class="py-3 px-3 text-center text-muted-foreground text-[11px]">
+                  {{ i + 1 }}
+                </td>
+
+                <!-- Nama & Brand -->
+                <td class="py-3 px-3">
+                  <div class="font-semibold text-foreground text-xs group-hover:text-primary transition-colors">
+                    {{ product.namaProduk }}
+                  </div>
+                  <div class="text-[10px] text-muted-foreground flex items-center gap-1 mt-0.5">
+                    <span>{{ product.namaBrandProduk || '-' }}</span>
+                    <span>•</span>
+                    <span class="font-mono">{{ product.nomorProduk || '-' }}</span>
+                  </div>
+                </td>
+
+                <!-- Aksi -->
+                <td class="py-3 px-3 text-right pr-3 whitespace-nowrap">
+                  <div class="inline-flex items-center justify-end gap-1" (click)="$event.stopPropagation()">
+                    <!-- Muat ke Panel Kiri (Arrow Left Icon) -->
+                    <button 
+                      type="button"
+                      (click)="selectProductForPanel(product, 'edit')"
+                      title="Muat Data ke Panel Kiri" 
+                      class="p-1.5 rounded-md text-primary hover:bg-primary/10 transition-colors cursor-pointer"
+                    >
+                      <lucide-icon [img]="arrowLeftIcon" class="size-4"></lucide-icon>
+                    </button>
+
+                    <!-- View Detail -->
+                    <button 
+                      type="button"
+                      (click)="selectProductForPanel(product, 'view')"
+                      title="Lihat Detail (Read-Only)" 
+                      class="p-1 rounded text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+                    >
+                      <lucide-icon [img]="eyeIcon" class="size-3.5"></lucide-icon>
+                    </button>
+
+                    <!-- Delete -->
+                    <button 
+                      type="button"
+                      (click)="deleteProduct(product.id, $event)"
+                      title="Hapus Produk" 
+                      class="p-1 rounded text-destructive/80 hover:text-destructive hover:bg-destructive/10 transition-colors cursor-pointer"
+                    >
+                      <lucide-icon [img]="trashIcon" class="size-3.5"></lucide-icon>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="3" class="py-8 text-center text-muted-foreground text-xs">
+                  Belum ada produk.
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Form Tambah Produk Cepat -->
+  @if (isAddModalOpen()) {
+    <div (click)="isAddModalOpen.set(false)" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div (click)="$event.stopPropagation()" class="bg-card border border-border rounded-xl shadow-xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+        <div class="p-4 border-b border-border flex items-center justify-between">
           <div>
-            <span class="text-slate-500 block mb-1">Barcode</span>
-            <span class="font-mono text-slate-300">{{ product.barcodeProduk }}</span>
+            <h2 class="text-base font-bold text-foreground">Tambah Produk Baru</h2>
+            <p class="text-[11px] text-muted-foreground">Isi 5 informasi dasar dulu, rincian lainnya dapat diisi di panel kiri</p>
           </div>
+          <button (click)="isAddModalOpen.set(false)" class="text-muted-foreground hover:text-foreground p-1 rounded-md transition-colors">
+            <lucide-icon [img]="xIcon" class="size-4"></lucide-icon>
+          </button>
+        </div>
+
+        <div class="p-4 space-y-3 text-xs">
           <div>
-            <span class="text-slate-500 block mb-1">Gramasi</span>
-            <span class="text-slate-300 font-semibold">{{ product.gramasiProduk }} gram</span>
+            <label class="block font-medium text-foreground mb-1">Nama Produk <span class="text-destructive">*</span></label>
+            <input hlmInput [(ngModel)]="formProduct().namaProduk" placeholder="Contoh: Laptop Gaming ROG Strix G16" class="w-full" />
           </div>
-          <div>
-            <span class="text-slate-500 block mb-1">Dimensi Kecil (P x L x T)</span>
-            <span class="text-slate-300">{{ product.panjangProdukKecil }} x {{ product.lebarProdukKecil }} x {{ product.tinggiProdukKecil }} cm</span>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-medium text-foreground mb-1">Kode / Nomor Produk</label>
+              <input hlmInput [(ngModel)]="formProduct().nomorProduk" placeholder="PRD-001" class="w-full" />
+            </div>
+            <div>
+              <label class="block font-medium text-foreground mb-1">Kategori Produk</label>
+              <select [(ngModel)]="formProduct().namaKategoriProduk" class="w-full rounded-md border border-input bg-background px-3 py-2 text-xs">
+                @for (kat of kategoriFacade.categories(); track kat.id) {
+                  <option [value]="kat.namaKategori">{{ kat.namaKategori }}</option>
+                } @empty {
+                  <option value="Laptop & Komputer">Laptop & Komputer</option>
+                  <option value="Smartphone">Smartphone</option>
+                }
+              </select>
+            </div>
           </div>
-          <div>
-            <span class="text-slate-500 block mb-1">Minim Stok / Beli</span>
-            <span class="text-slate-300">{{ product.minimStokUnit1 }} / {{ product.minimBeliUnit1 }}</span>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-medium text-foreground mb-1">Vendor Utama</label>
+              <input hlmInput [(ngModel)]="formProduct().namaVendorProduk" placeholder="PT Asus Indonesia" class="w-full" />
+            </div>
+            <div>
+              <label class="block font-medium text-foreground mb-1">Brand Produk</label>
+              <select [(ngModel)]="formProduct().namaBrandProduk" class="w-full rounded-md border border-input bg-background px-3 py-2 text-xs">
+                @for (b of brandFacade.brands(); track b.id) {
+                  <option [value]="b.namaBrand">{{ b.namaBrand }}</option>
+                } @empty {
+                  <option value="ROG">ROG</option>
+                  <option value="Samsung Galaxy">Samsung Galaxy</option>
+                }
+              </select>
+            </div>
           </div>
         </div>
 
-        <div class="mt-4 text-xs text-slate-400 flex items-center justify-between">
-          <span>Keterangan: {{ product.keteranganProduk }}</span>
-          <span class="text-slate-500">Tgl Dibuat: {{ product.createdAt | date:'dd MMM yyyy, HH:mm' }}</span>
+        <div class="p-4 border-t border-border flex justify-end gap-2 bg-muted/30">
+          <button (click)="isAddModalOpen.set(false)" class="px-3 py-1.5 rounded-lg border border-border text-xs font-medium hover:bg-accent cursor-pointer">
+            Batal
+          </button>
+          <button (click)="saveProduct()" class="px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 cursor-pointer">
+            Simpan & Edit Rinci
+          </button>
         </div>
       </div>
-    }
-  </div>
+    </div>
+  }
 </div>

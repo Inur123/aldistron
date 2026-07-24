@@ -8,15 +8,17 @@ import { PengaturanFacade } from '../../facades/pengaturan.facade';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="p-6 bg-slate-900 min-h-screen text-white">
-      <h1 class="text-2xl font-bold mb-4">Modul Pengaturan</h1>
-      <ul class="space-y-2">
-        @for (p of facade.pengaturans(); track p.id) {
-          <li class="p-4 bg-slate-800 rounded-xl border border-slate-700">
-            {{ p.namaParam }} ({{ p.parameter }}): {{ p.paramString }}
-          </li>
-        }
-      </ul>
+    <div class="w-full font-sans">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight text-foreground">Modul Pengaturan</h1>
+          <p class="text-xs text-muted-foreground mt-0.5">Kelola data modul Pengaturan arsitektur RAPIDATA</p>
+        </div>
+      </div>
+
+      <div class="border-t border-b border-border py-12 text-center text-muted-foreground text-sm">
+        Belum ada data Pengaturan.
+      </div>
     </div>
   `
 })

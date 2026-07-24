@@ -9,15 +9,17 @@ import { AolDatabaseFacade } from '../../facades/aol-database.facade';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="p-6 bg-slate-900 min-h-screen text-white">
-      <h1 class="text-2xl font-bold mb-4">Daftar AOL Database</h1>
-      <ul class="space-y-2">
-        @for (db of facade.databases(); track db.id) {
-          <li class="p-4 bg-slate-800 rounded-xl border border-slate-700">
-            {{ db.namaAoldatabase }} ({{ db.emailAolconnector }})
-          </li>
-        }
-      </ul>
+    <div class="w-full font-sans">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight text-foreground">Modul Aol Database</h1>
+          <p class="text-xs text-muted-foreground mt-0.5">Kelola data modul Aol Database arsitektur RAPIDATA</p>
+        </div>
+      </div>
+
+      <div class="border-t border-b border-border py-12 text-center text-muted-foreground text-sm">
+        Belum ada data Aol Database.
+      </div>
     </div>
   `
 })

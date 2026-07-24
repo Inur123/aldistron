@@ -38,4 +38,16 @@ export class ProdukKategoriFacade {
   selectCategory(category: ProdukKategori | null): void {
     this.store.setSelectedItem(category);
   }
+
+  addCategory(category: ProdukKategori): void {
+    this.store.addCategory(category);
+  }
+
+  updateCategory(updated: ProdukKategori): void {
+    this.store.updateCategory(updated);
+  }
+
+  deleteCategory(id: number): void {
+    this.store.deleteCategory(id);
+  }
 }

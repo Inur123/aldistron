@@ -1,0 +1,371 @@
+<div class="w-full font-sans space-y-4">
+  <!-- Top Navigation Header & Right Action Button -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight text-foreground">Modul Kelola Harga</h1>
+      <p class="text-xs text-muted-foreground mt-0.5">Kelola penetapan harga jual, diskon, promo, paket, dan momen</p>
+    </div>
+
+    <!-- Right Action Button Add Harga Promo -->
+    <div class="flex items-center gap-2">
+      <button
+        (click)="openAddPromoModal()"
+        class="inline-flex items-center gap-2 px-3.5 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-semibold rounded-lg shadow-xs transition-colors cursor-pointer"
+      >
+        <lucide-icon [img]="plusIcon" class="size-4"></lucide-icon>
+        <span>Tambah Harga Promo</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Sub-Module Tabs Bar (Sidebar Active Pill Style) -->
+  <div class="flex items-center gap-1.5 border-b border-border/80 pb-2 overflow-x-auto thin-scrollbar">
+    <a
+      routerLink="/harga-jual"
+      routerLinkActive
+      #rlaJual="routerLinkActive"
+      [class]="rlaJual.isActive ? 'bg-accent text-accent-foreground font-semibold shadow-2xs' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'"
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Harga Jual
+    </a>
+    <a
+      routerLink="/harga-diskon"
+      routerLinkActive
+      #rlaDiskon="routerLinkActive"
+      [class]="rlaDiskon.isActive ? 'bg-accent text-accent-foreground font-semibold shadow-2xs' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'"
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Harga Diskon
+    </a>
+    <a
+      routerLink="/harga-promo"
+      routerLinkActive
+      #rlaPromo="routerLinkActive"
+      [class]="rlaPromo.isActive ? 'bg-accent text-accent-foreground font-semibold shadow-2xs' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'"
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Harga Promo
+    </a>
+    <a
+      routerLink="/harga-paket"
+      routerLinkActive
+      #rlaPaket="routerLinkActive"
+      [class]="rlaPaket.isActive ? 'bg-accent text-accent-foreground font-semibold shadow-2xs' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'"
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Harga Paket
+    </a>
+    <a
+      routerLink="/harga-momen"
+      routerLinkActive
+      #rlaMomen="routerLinkActive"
+      [class]="rlaMomen.isActive ? 'bg-accent text-accent-foreground font-semibold shadow-2xs' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'"
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Harga Momen
+    </a>
+  </div>
+
+  <!-- 2-COLUMN SPLIT GRID LAYOUT -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+
+    <!-- LEFT PANEL (Kiri): Detail Program & Produk Promo Bonus Rinci (7 COLS) -->
+    <div class="lg:col-span-7 bg-card border border-border rounded-xl shadow-xs overflow-hidden">
+      @if (selectedHargaPromoItem()) {
+        <!-- Panel Header -->
+        <div class="p-4 border-b border-border flex items-center justify-between bg-muted/20">
+          <div>
+            <h2 class="text-sm font-bold text-foreground flex items-center gap-2">
+              <lucide-icon [img]="giftIcon" class="size-4 text-primary"></lucide-icon>
+              <span>{{ formPanel().nama_hargapromo || 'Detail Program Promo' }}</span>
+              <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
+                HargaPromoDto & Rinci
+              </span>
+            </h2>
+            <p class="text-[11px] text-muted-foreground mt-0.5">Kelola event promo penjualan dan barang/produk bonus hadiah pelanggan</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span
+              class="text-[10px] font-semibold px-2 py-0.5 rounded-full"
+              [class]="panelMode() === 'edit' ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'"
+            >
+              {{ panelMode() === 'edit' ? 'Mode Edit' : 'Mode Read-Only' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Panel Form Body (Tampil semua tanpa scrollbar internal) -->
+        <div class="p-4 space-y-4 text-xs">
+          <!-- Section 1: Informasi Program Utama (HargaPromoDto) -->
+          <div class="space-y-3">
+            <h3 class="font-bold text-foreground border-b border-border pb-1">1. Informasi Program Utama (HargaPromoDto)</h3>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block font-medium text-foreground mb-1">Nama Program Promo</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" [(ngModel)]="formPanel().nama_hargapromo" class="w-full" />
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Keterangan Program</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" [(ngModel)]="formPanel().keterangan_hargapromo" class="w-full" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3">
+              <div>
+                <label class="block font-medium text-foreground mb-1">Tanggal Awal</label>
+                <hlm-date-picker
+                  name="awal_hargapromo"
+                  [(ngModel)]="formPanel().awal_hargapromo"
+                  [disabled]="panelMode() === 'view'"
+                  captionLayout="dropdown"
+                  [defaultFocusedDate]="defaultFocusedDate"
+                  [formatDate]="formatDate"
+                >
+                  <hlm-date-picker-input
+                    placeholder="yyyy-MM-dd"
+                    [parseDate]="parseDate"
+                    [formatInputDate]="formatInputDate"
+                    class="w-full h-9"
+                  />
+                </hlm-date-picker>
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Tanggal Akhir</label>
+                <hlm-date-picker
+                  name="akhir_hargapromo"
+                  [(ngModel)]="formPanel().akhir_hargapromo"
+                  [disabled]="panelMode() === 'view'"
+                  captionLayout="dropdown"
+                  [defaultFocusedDate]="defaultFocusedDate"
+                  [formatDate]="formatDate"
+                >
+                  <hlm-date-picker-input
+                    placeholder="yyyy-MM-dd"
+                    [parseDate]="parseDate"
+                    [formatInputDate]="formatInputDate"
+                    class="w-full h-9"
+                  />
+                </hlm-date-picker>
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Tipe Alokasi Cabang</label>
+                <select [disabled]="panelMode() === 'view'" [(ngModel)]="formPanel().tipe_alokasi_hargapromo" class="w-full h-9 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed">
+                  <option value="All Cabang">All Cabang</option>
+                  <option value="Cabang Utama">Cabang Utama</option>
+                  <option value="Regional Jawa">Regional Jawa</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Produk Promo Target & Hadiah Bonus Rinci (HargaPromoProdukDto & HargaPromoRinciDto) -->
+          <div class="space-y-3 pt-2">
+            <h3 class="font-bold text-foreground border-b border-border pb-1">2. Produk Target & Hadiah Bonus Rinci</h3>
+
+            <div>
+              <label class="block font-medium text-foreground mb-1">Pilih Produk Utama Target</label>
+              <hlm-combobox class="w-full" [(value)]="formPanel().nama_produk_hargapromo" [disabled]="panelMode() === 'view'">
+                <hlm-combobox-input [placeholder]="formPanel().nama_produk_hargapromo || 'Pilih Produk Utama Target'" class="w-full h-9" />
+                <hlm-combobox-content *hlmComboboxPortal class="w-(--brn-combobox-width) p-0">
+                  <hlm-combobox-empty>Produk tidak ditemukan.</hlm-combobox-empty>
+                  <div hlmComboboxList>
+                    @for (prodName of availableProducts(); track prodName) {
+                      <hlm-combobox-item [value]="prodName" (selected)="formPanel().nama_produk_hargapromo = prodName">
+                        {{ prodName }}
+                      </hlm-combobox-item>
+                    }
+                  </div>
+                </hlm-combobox-content>
+              </hlm-combobox>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block font-medium text-foreground mb-1">Nama Produk / Barang Bonus</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" [(ngModel)]="formPanel().nama_produk_bonus" placeholder="Contoh: ROG Gaming Mousepad RGB" class="w-full font-semibold" />
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Satuan Unit Bonus</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" [(ngModel)]="formPanel().nama_unit_hargapromo" class="w-full" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block font-medium text-foreground mb-1">Jumlah Qty Bonus</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" type="number" [(ngModel)]="formPanel().qty_bonus" class="w-full font-semibold" />
+              </div>
+              <div>
+                <label class="block font-medium text-foreground mb-1">Estimasi Nilai Bonus (Rp)</label>
+                <input hlmInput [disabled]="panelMode() === 'view'" type="number" [(ngModel)]="formPanel().nilai_bonus" class="w-full font-semibold" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel Footer -->
+        <div class="p-4 border-t border-border flex justify-between items-center bg-muted/30">
+          <button
+            (click)="deleteHargaPromo(formPanel().id)"
+            class="px-3 py-1.5 rounded-lg text-destructive hover:bg-destructive/10 text-xs font-semibold cursor-pointer transition-colors"
+          >
+            Hapus Program Ini
+          </button>
+
+          @if (panelMode() === 'edit') {
+            <button
+              (click)="savePanelProduct()"
+              class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 cursor-pointer shadow-xs transition-colors"
+            >
+              <lucide-icon [img]="checkCircleIcon" class="size-3.5"></lucide-icon>
+              <span>Simpan Perubahan</span>
+            </button>
+          }
+        </div>
+      } @else {
+        <div class="p-12 text-center text-muted-foreground text-xs space-y-2">
+          <lucide-icon [img]="giftIcon" class="size-8 mx-auto text-muted-foreground/50"></lucide-icon>
+          <p class="font-medium">Pilih program promo dari tabel di sebelah kanan untuk melihat / mengedit rincian produk & bonus hadiah.</p>
+        </div>
+      }
+    </div>
+
+    <!-- RIGHT PANEL (Kanan): Simpel Tabel Program Harga Promo (5 COLS) -->
+    <div class="lg:col-span-5 bg-card border border-border rounded-xl shadow-xs overflow-hidden">
+      <div class="p-3.5 border-b border-border bg-muted/20 flex items-center justify-between">
+        <h2 class="text-xs font-bold text-foreground">Daftar Program Harga Promo (Ringkas)</h2>
+        <span class="text-[10px] text-muted-foreground flex items-center gap-1">
+          <span>Klik aksi</span>
+          <lucide-icon [img]="arrowLeftIcon" class="size-3 text-primary inline"></lucide-icon>
+          <span>untuk muat data</span>
+        </span>
+      </div>
+
+      <div class="overflow-x-auto thin-scrollbar">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-border bg-muted/40 text-muted-foreground font-semibold select-none">
+              <th class="py-2.5 px-3 w-8 text-center">No</th>
+              <th class="py-2.5 px-3 font-semibold">Program & Produk Target</th>
+              <th class="py-2.5 px-3 font-semibold text-right pr-3">Aksi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border/60">
+            @for (item of items(); track item.id; let i = $index) {
+              <tr
+                (click)="selectItemForPanel(item, 'edit')"
+                [class]="selectedHargaPromoItem()?.id === item.id ? 'bg-primary/10 border-l-2 border-l-primary' : 'hover:bg-accent/30'"
+                class="transition-colors cursor-pointer group"
+              >
+                <!-- No -->
+                <td class="py-3 px-3 text-center text-muted-foreground text-[11px]">
+                  {{ i + 1 }}
+                </td>
+
+                <!-- Program & Produk Target -->
+                <td class="py-3 px-3">
+                  <div class="font-semibold text-foreground text-xs group-hover:text-primary transition-colors">
+                    {{ item.nama_hargapromo }}
+                  </div>
+                  <div class="text-[10px] text-muted-foreground flex items-center gap-1 mt-0.5">
+                    <lucide-icon [img]="packageIcon" class="size-3 text-primary shrink-0"></lucide-icon>
+                    <span>{{ item.hargapromoproduks.length > 0 ? item.hargapromoproduks[0].nama_produk_hargapromo : 'Belum ada produk' }}</span>
+                  </div>
+                </td>
+
+                <!-- Aksi -->
+                <td class="py-3 px-3 text-right pr-3 whitespace-nowrap">
+                  <div class="inline-flex items-center justify-end gap-1" (click)="$event.stopPropagation()">
+                    <!-- Muat ke Panel Kiri (Arrow Left Icon) -->
+                    <button
+                      type="button"
+                      (click)="selectItemForPanel(item, 'edit')"
+                      title="Muat Data ke Panel Kiri"
+                      class="p-1.5 rounded-md text-primary hover:bg-primary/10 transition-colors cursor-pointer"
+                    >
+                      <lucide-icon [img]="arrowLeftIcon" class="size-4"></lucide-icon>
+                    </button>
+
+                    <!-- View Detail -->
+                    <button
+                      type="button"
+                      (click)="selectItemForPanel(item, 'view')"
+                      title="Lihat Detail (Read-Only)"
+                      class="p-1 rounded text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+                    >
+                      <lucide-icon [img]="eyeIcon" class="size-3.5"></lucide-icon>
+                    </button>
+
+                    <!-- Delete -->
+                    <button
+                      type="button"
+                      (click)="deleteHargaPromo(item.id, $event)"
+                      title="Hapus Program Harga Promo"
+                      class="p-1 rounded text-destructive/80 hover:text-destructive hover:bg-destructive/10 transition-colors cursor-pointer"
+                    >
+                      <lucide-icon [img]="trashIcon" class="size-3.5"></lucide-icon>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="3" class="py-8 text-center text-muted-foreground text-xs">
+                  Belum ada program harga promo.
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Form Tambah Program Harga Promo Baru -->
+  @if (isAddPromoOpen()) {
+    <div (click)="isAddPromoOpen.set(false)" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div (click)="$event.stopPropagation()" class="bg-card border border-border rounded-xl shadow-xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+        <div class="p-4 border-b border-border flex items-center justify-between">
+          <h2 class="text-base font-bold text-foreground">Tambah Program Harga Promo Baru</h2>
+          <button (click)="isAddPromoOpen.set(false)" class="text-muted-foreground hover:text-foreground p-1 rounded-md transition-colors">
+            <lucide-icon [img]="xIcon" class="size-4"></lucide-icon>
+          </button>
+        </div>
+
+        <div class="p-4 space-y-3 text-xs">
+          <div>
+            <label class="block font-medium text-foreground mb-1">Nama Program Promo <span class="text-destructive">*</span></label>
+            <input hlmInput [(ngModel)]="formPromo().nama_hargapromo" placeholder="Contoh: Promo Bundle Gaming Strix 2026" class="w-full" />
+          </div>
+
+          <div>
+            <label class="block font-medium text-foreground mb-1">Keterangan Program</label>
+            <input hlmInput [(ngModel)]="formPromo().keterangan_hargapromo" placeholder="Deskripsi program promo" class="w-full" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-medium text-foreground mb-1">Tanggal Awal</label>
+              <input type="date" hlmInput [(ngModel)]="formPromo().awal_hargapromo" class="w-full" />
+            </div>
+            <div>
+              <label class="block font-medium text-foreground mb-1">Tanggal Akhir</label>
+              <input type="date" hlmInput [(ngModel)]="formPromo().akhir_hargapromo" class="w-full" />
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 border-t border-border flex justify-end gap-2 bg-muted/30">
+          <button (click)="isAddPromoOpen.set(false)" class="px-3 py-1.5 rounded-lg border border-border text-xs font-medium hover:bg-accent cursor-pointer">
+            Batal
+          </button>
+          <button (click)="saveHargaPromo()" class="px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 cursor-pointer">
+            Simpan &amp; Tentukan Bonus
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

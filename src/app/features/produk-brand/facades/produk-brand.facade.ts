@@ -38,4 +38,16 @@ export class ProdukBrandFacade {
   selectBrand(brand: ProdukBrand | null): void {
     this.store.setSelectedBrand(brand);
   }
+
+  addBrand(brand: ProdukBrand): void {
+    this.store.addBrand(brand);
+  }
+
+  updateBrand(updated: ProdukBrand): void {
+    this.store.updateBrand(updated);
+  }
+
+  deleteBrand(id: number): void {
+    this.store.deleteBrand(id);
+  }
 }

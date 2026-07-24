@@ -7,15 +7,17 @@ import { PelangganPoinFacade } from '../../facades/pelanggan-poin.facade';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="p-6 bg-slate-900 min-h-screen text-white">
-      <h1 class="text-2xl font-bold mb-4">Modul Pelanggan Poin</h1>
-      <ul class="space-y-2">
-        @for (p of facade.poins(); track p.id) {
-          <li class="p-4 bg-slate-800 rounded-xl border border-slate-700">
-            {{ p.namaEvent }} - Saldo Poin: {{ p.poinSaldo }}
-          </li>
-        }
-      </ul>
+    <div class="w-full font-sans">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight text-foreground">Modul Pelanggan Poin</h1>
+          <p class="text-xs text-muted-foreground mt-0.5">Kelola data modul Pelanggan Poin arsitektur RAPIDATA</p>
+        </div>
+      </div>
+
+      <div class="border-t border-b border-border py-12 text-center text-muted-foreground text-sm">
+        Belum ada data Pelanggan Poin.
+      </div>
     </div>
   `
 })

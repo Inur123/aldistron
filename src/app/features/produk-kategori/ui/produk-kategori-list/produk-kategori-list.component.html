@@ -1,0 +1,283 @@
+<div class="w-full font-sans space-y-4">
+  <!-- Top Header Title & Right Action Button -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight text-foreground">Modul Produk</h1>
+      <p class="text-xs text-muted-foreground mt-0.5">Kelola kategori produk</p>
+    </div>
+
+    <!-- Action Button Add Kategori -->
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        (click)="openAddModal()"
+        class="inline-flex items-center gap-2 px-3.5 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-semibold rounded-lg shadow-xs transition-colors cursor-pointer"
+      >
+        <lucide-icon [img]="plusIcon" class="size-4"></lucide-icon>
+        <span>Tambah Produk Kategori</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Sub-Module Tabs Bar (Sidebar Active Pill Style) -->
+  <div
+    class="flex items-center gap-1.5 border-b border-border/80 pb-2 overflow-x-auto thin-scrollbar"
+  >
+    <a
+      routerLink="/products"
+      routerLinkActive
+      #rlaProd="routerLinkActive"
+      [class]="
+        rlaProd.isActive
+          ? 'bg-accent text-accent-foreground font-semibold shadow-2xs'
+          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+      "
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Produk
+    </a>
+    <a
+      routerLink="/produk-brands"
+      routerLinkActive
+      #rlaBrand="routerLinkActive"
+      [class]="
+        rlaBrand.isActive
+          ? 'bg-accent text-accent-foreground font-semibold shadow-2xs'
+          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+      "
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Produk Brand
+    </a>
+    <a
+      routerLink="/produk-kategori"
+      routerLinkActive
+      #rlaKat="routerLinkActive"
+      [class]="
+        rlaKat.isActive
+          ? 'bg-accent text-accent-foreground font-semibold shadow-2xs'
+          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+      "
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Produk Kategori
+    </a>
+    <a
+      routerLink="/produk-kompetitor"
+      routerLinkActive
+      #rlaKomp="routerLinkActive"
+      [class]="
+        rlaKomp.isActive
+          ? 'bg-accent text-accent-foreground font-semibold shadow-2xs'
+          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+      "
+      class="px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer whitespace-nowrap"
+    >
+      Produk Kompetitor
+    </a>
+  </div>
+
+  <!-- Custom Clean Tailwind Table Container with Horizontal Scroll -->
+  <div class="w-full overflow-hidden rounded-xl border border-border bg-card shadow-xs">
+    <div class="overflow-x-auto thin-scrollbar">
+      <table class="min-w-[650px] w-full text-left text-xs text-foreground border-collapse">
+        <!-- Table Header -->
+        <thead>
+          <tr
+            class="border-b border-border bg-muted/40 text-muted-foreground font-medium select-none whitespace-nowrap"
+          >
+            <th class="py-3 px-4 w-12 text-center">No</th>
+            <th class="py-3 px-4 font-semibold">
+              <div class="inline-flex items-center gap-1.5 cursor-pointer hover:text-foreground">
+                <span>Nama Kategori</span>
+                <lucide-icon
+                  [img]="arrowUpDownIcon"
+                  class="size-3 text-muted-foreground/70"
+                ></lucide-icon>
+              </div>
+            </th>
+            <th class="py-3 px-4 font-semibold">
+              <div class="inline-flex items-center gap-1.5 cursor-pointer hover:text-foreground">
+                <span>Keterangan Kategori</span>
+                <lucide-icon
+                  [img]="arrowUpDownIcon"
+                  class="size-3 text-muted-foreground/70"
+                ></lucide-icon>
+              </div>
+            </th>
+            <th class="py-3 px-4 font-semibold text-center">Connection AOL</th>
+            <th class="py-3 px-4 font-semibold text-right pr-6">Aksi</th>
+          </tr>
+        </thead>
+
+        <!-- Table Body -->
+        <tbody class="divide-y divide-border/60 whitespace-nowrap">
+          @for (cat of facade.categories(); track cat.id; let i = $index) {
+            <tr class="hover:bg-accent/30 transition-colors group">
+              <td class="py-3.5 px-4 text-center font-medium text-muted-foreground">
+                {{ i + 1 }}
+              </td>
+              <td class="py-3.5 px-4 font-semibold text-foreground">
+                {{ cat.namaKategori }}
+              </td>
+              <td class="py-3.5 px-4 text-muted-foreground">
+                {{ cat.keteranganKategori || '-' }}
+              </td>
+              <td class="py-3.5 px-4 text-center">
+                <span
+                  class="inline-flex items-center text-[11px] px-2.5 py-0.5 rounded-full font-medium"
+                  [class]="
+                    cat.connectionAol
+                      ? 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/20'
+                      : 'bg-muted text-muted-foreground border border-border'
+                  "
+                >
+                  {{ cat.connectionAol ? 'Terhubung' : 'Terputus' }}
+                </span>
+              </td>
+              <td class="py-3.5 px-4 text-right pr-6">
+                <div class="inline-flex items-center justify-end gap-1.5">
+                  <!-- View Detail Button -->
+                  <button
+                    type="button"
+                    (click)="openViewModal(cat)"
+                    title="Lihat Detail Kategori"
+                    class="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-colors cursor-pointer"
+                  >
+                    <lucide-icon [img]="eyeIcon" class="size-4"></lucide-icon>
+                  </button>
+
+                  <!-- Edit Button -->
+                  <button
+                    type="button"
+                    (click)="openEditModal(cat)"
+                    title="Edit Data Kategori"
+                    class="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-colors cursor-pointer"
+                  >
+                    <lucide-icon [img]="pencilIcon" class="size-4"></lucide-icon>
+                  </button>
+
+                  <!-- Delete Button -->
+                  <button
+                    type="button"
+                    (click)="deleteCategory(cat.id)"
+                    title="Hapus Kategori"
+                    class="p-1.5 rounded-md text-destructive/80 hover:text-destructive hover:bg-destructive/10 transition-colors cursor-pointer"
+                  >
+                    <lucide-icon [img]="trashIcon" class="size-4"></lucide-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="py-12 text-center text-muted-foreground text-sm">
+                Belum ada data produk kategori yang tersedia.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Table Footer / Pagination -->
+    <div
+      class="px-4 py-3 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground select-none"
+    >
+      <div class="whitespace-nowrap">
+        Menampilkan
+        <strong class="font-semibold text-foreground">{{
+          facade.categories().length > 0 ? 1 : 0
+        }}</strong>
+        sampai
+        <strong class="font-semibold text-foreground">{{ facade.categories().length }}</strong> dari
+        <strong class="font-semibold text-foreground">{{ facade.categories().length }}</strong>
+        kategori
+      </div>
+
+      <div class="flex items-center gap-1.5">
+        <button
+          disabled
+          class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border border-border bg-background text-muted-foreground disabled:opacity-50 cursor-not-allowed"
+        >
+          <lucide-icon [img]="chevronLeftIcon" class="size-3.5"></lucide-icon>
+          <span>Previous</span>
+        </button>
+        <span
+          class="size-7 inline-flex items-center justify-center rounded-md bg-accent text-accent-foreground font-semibold"
+          >1</span
+        >
+        <button
+          disabled
+          class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border border-border bg-background text-muted-foreground disabled:opacity-50 cursor-not-allowed"
+        >
+          <span>Next</span>
+          <lucide-icon [img]="chevronRightIcon" class="size-3.5"></lucide-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Form Produk Kategori (Add / View / Edit) -->
+  @if (isAddModalOpen()) {
+    <div
+      (click)="isAddModalOpen.set(false)"
+      class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4"
+    >
+      <div
+        (click)="$event.stopPropagation()"
+        class="bg-card border border-border rounded-xl shadow-xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-150"
+      >
+        <div class="p-4 border-b border-border flex items-center justify-between">
+          <h2 class="text-base font-bold text-foreground">
+            {{ modalMode() === 'view' ? 'Detail Produk Kategori' : (selectedCategoryId() ? 'Edit Produk Kategori' : 'Tambah Produk Kategori') }}
+          </h2>
+          <button (click)="isAddModalOpen.set(false)" class="text-muted-foreground hover:text-foreground p-1 rounded-md transition-colors">
+            <lucide-icon [img]="xIcon" class="size-4"></lucide-icon>
+          </button>
+        </div>
+
+        <div class="p-4 space-y-3 text-xs">
+          <div>
+            <label class="block font-medium text-foreground mb-1">Nama Kategori</label>
+            <input
+              hlmInput
+              [disabled]="modalMode() === 'view'"
+              [(ngModel)]="formKategori().namaKategori"
+              placeholder="Contoh: Laptop / Smartphone"
+              class="w-full"
+            />
+          </div>
+
+          <div>
+            <label class="block font-medium text-foreground mb-1">Keterangan Kategori</label>
+            <input
+              hlmInput
+              [disabled]="modalMode() === 'view'"
+              [(ngModel)]="formKategori().keteranganKategori"
+              placeholder="Deskripsi kategori"
+              class="w-full"
+            />
+          </div>
+        </div>
+
+        <div class="p-4 border-t border-border flex justify-end gap-2 bg-muted/30">
+          <button
+            (click)="isAddModalOpen.set(false)"
+            class="px-3 py-1.5 rounded-lg border border-border text-xs font-medium hover:bg-accent cursor-pointer"
+          >
+            {{ modalMode() === 'view' ? 'Tutup' : 'Batal' }}
+          </button>
+          @if (modalMode() === 'edit') {
+            <button
+              (click)="saveKategori()"
+              class="px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 cursor-pointer"
+            >
+              Simpan Kategori
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>

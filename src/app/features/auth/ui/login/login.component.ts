@@ -136,7 +136,7 @@ export class LoginComponent {
       next: (res) => {
         if (res.status) {
           toast.success('Login berhasil! Selamat datang.');
-          this.router.navigate(['/']);
+          this.router.navigate(['/dashboard']);
         } else {
           toast.error(this.facade.error() ?? 'Login gagal, coba lagi.');
         }

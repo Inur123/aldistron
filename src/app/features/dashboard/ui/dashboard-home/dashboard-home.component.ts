@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { DashboardFacade } from '../../facades/dashboard.facade';
 import { 
   LucideAngularModule, 
   Package, 
@@ -59,44 +60,44 @@ interface FeatureGroup {
   standalone: true,
   imports: [CommonModule, RouterModule, LucideAngularModule],
   template: `
-    <div class="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-10 font-sans">
+    <div class="space-y-6">
       <!-- Header -->
-      <header class="max-w-7xl mx-auto mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+      <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-6">
         <div>
           <div class="flex items-center gap-3 mb-2">
-            <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-full text-xs font-semibold uppercase tracking-wider">
+            <span class="px-2.5 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-semibold uppercase tracking-wider">
               ALDISTRON ERP PLATFORM
             </span>
-            <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-xs font-semibold">
+            <span class="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 rounded-full text-xs font-semibold">
               87 Modules Active
             </span>
           </div>
-          <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+          <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">
             Navigation Dashboard
           </h1>
-          <p class="text-slate-400 mt-1 text-sm md:text-base">
+          <p class="text-muted-foreground mt-1 text-sm">
             Pusat kendali modul data RAPIDATA Architecture. Pilih modul untuk melihat antarmuka dan pengelolaan data.
           </p>
         </div>
       </header>
 
       <!-- Search & Grid Content -->
-      <main class="max-w-7xl mx-auto space-y-10">
+      <main class="space-y-8">
         @for (group of featureGroups; track group.category) {
           <section>
-            <h2 class="text-lg font-bold text-slate-300 mb-4 flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+            <h2 class="text-base font-bold text-foreground mb-4 flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
               {{ group.category }}
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               @for (mod of group.modules; track mod.route) {
                 <a [routerLink]="'/' + mod.route"
-                   class="group relative bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-indigo-500/50 rounded-2xl p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/10 flex flex-col justify-between">
+                   class="group relative bg-card hover:bg-accent/50 border hover:border-primary/50 rounded-xl p-4 transition-all duration-200 hover:-translate-y-0.5 shadow-sm flex flex-col justify-between">
                   <div>
-                    <div class="w-10 h-10 rounded-xl bg-slate-800 group-hover:bg-indigo-600/20 text-slate-400 group-hover:text-indigo-400 flex items-center justify-center mb-3 transition-colors">
-                      <lucide-angular [img]="mod.icon" class="w-5 h-5"></lucide-angular>
+                    <div class="w-9 h-9 rounded-lg bg-muted group-hover:bg-primary/10 text-muted-foreground group-hover:text-primary flex items-center justify-center mb-3 transition-colors">
+                      <lucide-angular [img]="mod.icon" class="w-4 h-4"></lucide-angular>
                     </div>
-                    <h3 class="font-semibold text-slate-200 group-hover:text-white text-base mb-1">
+                    <h3 class="font-semibold text-foreground text-sm mb-1">
                       {{ mod.name }}
                     </h3>
                     <p class="text-xs text-slate-400 line-clamp-2">
@@ -207,4 +208,10 @@ export class DashboardHomeComponent {
       ]
     }
   ];
+
+  constructor(public facade: DashboardFacade) {}
+
+  ngOnInit(): void {
+    this.facade.loadDashboardSummary().subscribe();
+  }
 }

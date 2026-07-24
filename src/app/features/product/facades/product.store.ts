@@ -9,6 +9,18 @@ export class ProductStore {
   readonly isLoading = signal<boolean>(false);
   readonly selectedProduct = signal<Product | null>(null);
 
+  addProduct(product: Product): void {
+    this.products.update(prods => [product, ...prods]);
+  }
+
+  updateProduct(updated: Product): void {
+    this.products.update(prods => prods.map(p => p.id === updated.id ? { ...p, ...updated } : p));
+  }
+
+  deleteProduct(id: number): void {
+    this.products.update(prods => prods.filter(p => p.id !== id));
+  }
+
   setProducts(products: Product[]): void {
     this.products.set(products);
   }

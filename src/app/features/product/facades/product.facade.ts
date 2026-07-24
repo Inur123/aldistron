@@ -38,4 +38,16 @@ export class ProductFacade {
   selectProduct(product: Product | null): void {
     this.store.setSelectedProduct(product);
   }
+
+  addProduct(product: Product): void {
+    this.store.addProduct(product);
+  }
+
+  updateProduct(updated: Product): void {
+    this.store.updateProduct(updated);
+  }
+
+  deleteProduct(id: number): void {
+    this.store.deleteProduct(id);
+  }
 }
